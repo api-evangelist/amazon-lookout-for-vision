@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Machine Learning
-  - Computer Vision
-  - Quality Inspection
-  - Manufacturing
   - AWS
+  - Computer Vision
+  - Machine Learning
+  - Manufacturing
+  - Quality Inspection
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -28,8 +28,8 @@ apis:
     humanURL: https://aws.amazon.com/lookout-for-vision/
     baseURL: https://lookoutvision.amazonaws.com
     tags:
-      - Machine Learning
       - Computer Vision
+      - Machine Learning
       - Quality Inspection
     properties:
       - type: Documentation
