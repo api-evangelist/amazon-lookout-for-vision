@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-dataset-metadata-list-structure.json",
+  "name": "DatasetMetadataList",
+  "description": "DatasetMetadataList schema from Amazon Lookout for Vision API",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/DatasetMetadata"
+  }
+}

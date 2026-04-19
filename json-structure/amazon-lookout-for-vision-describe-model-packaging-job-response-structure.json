@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-describe-model-packaging-job-response-structure.json",
+  "name": "DescribeModelPackagingJobResponse",
+  "description": "DescribeModelPackagingJobResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ModelPackagingDescription": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingDescription"
+        },
+        {
+          "description": "The description of the model packaging job. "
+        }
+      ]
+    }
+  }
+}

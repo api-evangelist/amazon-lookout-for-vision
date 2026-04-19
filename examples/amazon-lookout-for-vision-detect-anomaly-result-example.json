@@ -1,0 +1,7 @@
+{
+  "Source": "example-value",
+  "IsAnomalous": "example-value",
+  "Confidence": "example-value",
+  "Anomalies": "example-value",
+  "AnomalyMask": "example-value"
+}

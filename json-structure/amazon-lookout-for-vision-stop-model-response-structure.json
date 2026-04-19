@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-stop-model-response-structure.json",
+  "name": "StopModelResponse",
+  "description": "StopModelResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelHostingStatus"
+        },
+        {
+          "description": "The status of the model."
+        }
+      ]
+    }
+  }
+}

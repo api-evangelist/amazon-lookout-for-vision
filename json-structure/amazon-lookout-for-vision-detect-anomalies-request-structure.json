@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-detect-anomalies-request-structure.json",
+  "name": "DetectAnomaliesRequest",
+  "description": "DetectAnomaliesRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Body": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Stream"
+        },
+        {
+          "description": "The unencrypted image bytes that you want to analyze. "
+        }
+      ]
+    }
+  },
+  "required": [
+    "Body"
+  ]
+}

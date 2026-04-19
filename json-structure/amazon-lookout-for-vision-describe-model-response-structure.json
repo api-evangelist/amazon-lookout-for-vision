@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-describe-model-response-structure.json",
+  "name": "DescribeModelResponse",
+  "description": "DescribeModelResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ModelDescription": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelDescription"
+        },
+        {
+          "description": "Contains the description of the model."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-start-model-packaging-job-request-schema.json",
+  "title": "StartModelPackagingJobRequest",
+  "description": "StartModelPackagingJobRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ModelVersion": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelVersion"
+        },
+        {
+          "description": " The version of the model within the project that you want to package. "
+        }
+      ]
+    },
+    "JobName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobName"
+        },
+        {
+          "description": "A name for the model packaging job. If you don't supply a value, the service creates a job name for you. "
+        }
+      ]
+    },
+    "Configuration": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingConfiguration"
+        },
+        {
+          "description": "The configuration for the model packaging job. "
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobDescription"
+        },
+        {
+          "description": "A description for the model packaging job. "
+        }
+      ]
+    }
+  },
+  "required": [
+    "ModelVersion",
+    "Configuration"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-create-model-request-schema.json",
+  "title": "CreateModelRequest",
+  "description": "CreateModelRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelDescriptionMessage"
+        },
+        {
+          "description": "A description for the version of the model."
+        }
+      ]
+    },
+    "OutputConfig": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/OutputConfig"
+        },
+        {
+          "description": "The location where Amazon Lookout for Vision saves the training results."
+        }
+      ]
+    },
+    "KmsKeyId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/KmsKeyId"
+        },
+        {
+          "description": "The identifier for your AWS KMS key. The key is used to encrypt training and test images copied into the service for model training. Your source images are unaffected. If this parameter is not specified, the copied images are encrypted by a key that AWS owns and manages."
+        }
+      ]
+    },
+    "Tags": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TagList"
+        },
+        {
+          "description": "A set of tags (key-value pairs) that you want to attach to the model."
+        }
+      ]
+    }
+  },
+  "required": [
+    "OutputConfig"
+  ]
+}

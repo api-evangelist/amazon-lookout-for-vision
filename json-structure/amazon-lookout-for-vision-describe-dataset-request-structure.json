@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-describe-dataset-request-structure.json",
+  "name": "DescribeDatasetRequest",
+  "description": "DescribeDatasetRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {}
+}

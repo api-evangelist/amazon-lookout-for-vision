@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-dataset-ground-truth-manifest-schema.json",
+  "title": "DatasetGroundTruthManifest",
+  "description": "Location information about a manifest file. You can use a manifest file to create a dataset.",
+  "type": "object",
+  "properties": {
+    "S3Object": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InputS3Object"
+        },
+        {
+          "description": "The S3 bucket location for the manifest file."
+        }
+      ]
+    }
+  }
+}

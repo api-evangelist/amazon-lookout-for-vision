@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-delete-model-request-structure.json",
+  "name": "DeleteModelRequest",
+  "description": "DeleteModelRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {}
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-dataset-status-structure.json",
+  "name": "DatasetStatus",
+  "description": "DatasetStatus schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "enum": [
+    "CREATE_IN_PROGRESS",
+    "CREATE_COMPLETE",
+    "CREATE_FAILED",
+    "UPDATE_IN_PROGRESS",
+    "UPDATE_COMPLETE",
+    "UPDATE_FAILED_ROLLBACK_IN_PROGRESS",
+    "UPDATE_FAILED_ROLLBACK_COMPLETE",
+    "DELETE_IN_PROGRESS",
+    "DELETE_COMPLETE",
+    "DELETE_FAILED"
+  ]
+}

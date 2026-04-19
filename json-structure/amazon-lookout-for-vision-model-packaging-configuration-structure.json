@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-packaging-configuration-structure.json",
+  "name": "ModelPackagingConfiguration",
+  "description": " Configuration information for a Amazon Lookout for Vision model packaging job. For more information, see <a>StartModelPackagingJob</a>. ",
+  "type": "object",
+  "properties": {
+    "Greengrass": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/GreengrassConfiguration"
+        },
+        {
+          "description": " Configuration information for the AWS IoT Greengrass component in a model packaging job. "
+        }
+      ]
+    }
+  },
+  "required": [
+    "Greengrass"
+  ]
+}

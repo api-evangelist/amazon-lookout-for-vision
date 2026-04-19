@@ -1,0 +1,10 @@
+{
+  "CompilerOptions": "example-value",
+  "TargetDevice": "example-value",
+  "TargetPlatform": "example-value",
+  "S3OutputLocation": "example-value",
+  "ComponentName": "my-project",
+  "ComponentVersion": "1",
+  "ComponentDescription": "Visual quality inspection model for manufacturing",
+  "Tags": "example-value"
+}

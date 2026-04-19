@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-output-s3-object-schema.json",
+  "title": "OutputS3Object",
+  "description": "The S3 location where Amazon Lookout for Vision saves training output.",
+  "type": "object",
+  "properties": {
+    "Bucket": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3BucketName"
+        },
+        {
+          "description": "The bucket that contains the training output."
+        }
+      ]
+    },
+    "Key": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3ObjectKey"
+        },
+        {
+          "description": "The location of the training output in the bucket."
+        }
+      ]
+    }
+  },
+  "required": [
+    "Bucket",
+    "Key"
+  ]
+}

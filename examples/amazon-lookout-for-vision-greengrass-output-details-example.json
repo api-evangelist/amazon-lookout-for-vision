@@ -1,0 +1,5 @@
+{
+  "ComponentVersionArn": "arn:aws:lookoutvision:us-east-1:123456789012:model/my-project/1",
+  "ComponentName": "my-project",
+  "ComponentVersion": "1"
+}

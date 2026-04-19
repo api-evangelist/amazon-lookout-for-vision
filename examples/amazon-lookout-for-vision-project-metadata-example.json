@@ -1,0 +1,5 @@
+{
+  "ProjectArn": "arn:aws:lookoutvision:us-east-1:123456789012:model/my-project/1",
+  "ProjectName": "my-project",
+  "CreationTimestamp": "example-value"
+}

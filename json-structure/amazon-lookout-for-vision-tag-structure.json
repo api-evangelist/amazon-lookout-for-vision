@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-tag-structure.json",
+  "name": "Tag",
+  "description": "A key and value pair that is attached to the specified Amazon Lookout for Vision model.",
+  "type": "object",
+  "properties": {
+    "Key": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TagKey"
+        },
+        {
+          "description": "The key of the tag that is attached to the specified model."
+        }
+      ]
+    },
+    "Value": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TagValue"
+        },
+        {
+          "description": "The value of the tag that is attached to the specified model."
+        }
+      ]
+    }
+  },
+  "required": [
+    "Key",
+    "Value"
+  ]
+}

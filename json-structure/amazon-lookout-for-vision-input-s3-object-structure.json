@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-input-s3-object-structure.json",
+  "name": "InputS3Object",
+  "description": "Amazon S3 Location information for an input manifest file. ",
+  "type": "object",
+  "properties": {
+    "Bucket": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3BucketName"
+        },
+        {
+          "description": "The Amazon S3 bucket that contains the manifest."
+        }
+      ]
+    },
+    "Key": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3ObjectKey"
+        },
+        {
+          "description": "The name and location of the manifest file withiin the bucket."
+        }
+      ]
+    },
+    "VersionId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3ObjectVersion"
+        },
+        {
+          "description": "The version ID of the bucket."
+        }
+      ]
+    }
+  },
+  "required": [
+    "Bucket",
+    "Key"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-target-device-structure.json",
+  "name": "TargetDevice",
+  "description": "TargetDevice schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "enum": [
+    "jetson_xavier"
+  ]
+}

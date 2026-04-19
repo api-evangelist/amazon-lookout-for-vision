@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-dataset-metadata-structure.json",
+  "name": "DatasetMetadata",
+  "description": "Summary information for an Amazon Lookout for Vision dataset. For more information, see <a>DescribeDataset</a> and <a>ProjectDescription</a>.",
+  "type": "object",
+  "properties": {
+    "DatasetType": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetType"
+        },
+        {
+          "description": "The type of the dataset."
+        }
+      ]
+    },
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The Unix timestamp for the date and time that the dataset was created. "
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetStatus"
+        },
+        {
+          "description": "The status for the dataset."
+        }
+      ]
+    },
+    "StatusMessage": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetStatusMessage"
+        },
+        {
+          "description": "The status message for the dataset."
+        }
+      ]
+    }
+  }
+}

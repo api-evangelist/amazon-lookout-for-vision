@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-list-projects-response-structure.json",
+  "name": "ListProjectsResponse",
+  "description": "ListProjectsResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Projects": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectMetadataList"
+        },
+        {
+          "description": "A list of projects in your AWS account."
+        }
+      ]
+    },
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PaginationToken"
+        },
+        {
+          "description": "If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of projects."
+        }
+      ]
+    }
+  }
+}

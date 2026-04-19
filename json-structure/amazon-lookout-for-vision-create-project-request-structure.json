@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-create-project-request-structure.json",
+  "name": "CreateProjectRequest",
+  "description": "CreateProjectRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ProjectName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectName"
+        },
+        {
+          "description": "The name for the project."
+        }
+      ]
+    }
+  },
+  "required": [
+    "ProjectName"
+  ]
+}

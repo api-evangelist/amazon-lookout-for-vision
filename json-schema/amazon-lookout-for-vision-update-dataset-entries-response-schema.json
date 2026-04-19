@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-update-dataset-entries-response-schema.json",
+  "title": "UpdateDatasetEntriesResponse",
+  "description": "UpdateDatasetEntriesResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetStatus"
+        },
+        {
+          "description": "The status of the dataset update."
+        }
+      ]
+    }
+  }
+}

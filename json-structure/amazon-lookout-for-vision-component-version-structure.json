@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-component-version-structure.json",
+  "name": "ComponentVersion",
+  "description": "ComponentVersion schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "pattern": "^([0-9]{1,6})\\.([0-9]{1,6})\\.([0-9]{1,6})$"
+}

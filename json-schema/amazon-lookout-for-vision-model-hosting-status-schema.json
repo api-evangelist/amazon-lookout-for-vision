@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-model-hosting-status-schema.json",
+  "title": "ModelHostingStatus",
+  "description": "ModelHostingStatus schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "enum": [
+    "STARTING_HOSTING",
+    "HOSTED",
+    "HOSTING_FAILED",
+    "STOPPING_HOSTING",
+    "SYSTEM_UPDATING"
+  ]
+}

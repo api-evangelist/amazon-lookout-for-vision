@@ -1,0 +1,16 @@
+{
+  "ModelVersion": "1",
+  "ModelArn": "arn:aws:lookoutvision:us-east-1:123456789012:model/my-project/1",
+  "CreationTimestamp": "example-value",
+  "Description": "Visual quality inspection model for manufacturing",
+  "Status": "TRAINED",
+  "StatusMessage": "TRAINED",
+  "Performance": "example-value",
+  "OutputConfig": "example-value",
+  "EvaluationManifest": "example-value",
+  "EvaluationResult": "example-value",
+  "EvaluationEndTimestamp": "example-value",
+  "KmsKeyId": "example-value",
+  "MinInferenceUnits": "example-value",
+  "MaxInferenceUnits": "example-value"
+}

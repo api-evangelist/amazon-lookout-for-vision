@@ -1,0 +1,13 @@
+{
+  "JobName": "my-project",
+  "ProjectName": "my-project",
+  "ModelVersion": "1",
+  "ModelPackagingConfiguration": "example-value",
+  "ModelPackagingJobDescription": "Visual quality inspection model for manufacturing",
+  "ModelPackagingMethod": "example-value",
+  "ModelPackagingOutputDetails": "example-value",
+  "Status": "TRAINED",
+  "StatusMessage": "TRAINED",
+  "CreationTimestamp": "example-value",
+  "LastUpdatedTimestamp": "example-value"
+}

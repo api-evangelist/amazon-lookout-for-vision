@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-page-size-structure.json",
+  "name": "PageSize",
+  "description": "PageSize schema from Amazon Lookout for Vision API",
+  "type": "int32",
+  "minimum": 1,
+  "maximum": 100
+}

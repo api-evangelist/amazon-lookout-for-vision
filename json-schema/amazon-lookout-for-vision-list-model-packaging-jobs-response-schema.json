@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-list-model-packaging-jobs-response-schema.json",
+  "title": "ListModelPackagingJobsResponse",
+  "description": "ListModelPackagingJobsResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ModelPackagingJobs": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobsList"
+        },
+        {
+          "description": " A list of the model packaging jobs created for the specified Amazon Lookout for Vision project. "
+        }
+      ]
+    },
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PaginationToken"
+        },
+        {
+          "description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. "
+        }
+      ]
+    }
+  }
+}

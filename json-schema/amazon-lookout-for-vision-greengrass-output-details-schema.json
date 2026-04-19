@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-greengrass-output-details-schema.json",
+  "title": "GreengrassOutputDetails",
+  "description": "Information about the AWS IoT Greengrass component created by a model packaging job. ",
+  "type": "object",
+  "properties": {
+    "ComponentVersionArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ComponentVersionArn"
+        },
+        {
+          "description": " The Amazon Resource Name (ARN) of the component. "
+        }
+      ]
+    },
+    "ComponentName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ComponentName"
+        },
+        {
+          "description": " The name of the component. "
+        }
+      ]
+    },
+    "ComponentVersion": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ComponentVersion"
+        },
+        {
+          "description": " The version of the component. "
+        }
+      ]
+    }
+  }
+}

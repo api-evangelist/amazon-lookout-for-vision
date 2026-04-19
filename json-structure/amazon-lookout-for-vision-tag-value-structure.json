@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-tag-value-structure.json",
+  "name": "TagValue",
+  "description": "TagValue schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+}

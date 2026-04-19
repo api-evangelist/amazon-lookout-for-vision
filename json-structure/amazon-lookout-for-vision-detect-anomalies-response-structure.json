@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-detect-anomalies-response-structure.json",
+  "name": "DetectAnomaliesResponse",
+  "description": "DetectAnomaliesResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "DetectAnomalyResult": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DetectAnomalyResult"
+        },
+        {
+          "description": "The results of the <code>DetectAnomalies</code> operation."
+        }
+      ]
+    }
+  }
+}

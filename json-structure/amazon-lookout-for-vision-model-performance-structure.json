@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-performance-structure.json",
+  "name": "ModelPerformance",
+  "description": "Information about the evaluation performance of a trained model. ",
+  "type": "object",
+  "properties": {
+    "F1Score": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Float"
+        },
+        {
+          "description": "The overall F1 score metric for the trained model."
+        }
+      ]
+    },
+    "Recall": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Float"
+        },
+        {
+          "description": "The overall recall metric value for the trained model. "
+        }
+      ]
+    },
+    "Precision": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Float"
+        },
+        {
+          "description": "The overall precision metric value for the trained model."
+        }
+      ]
+    }
+  }
+}

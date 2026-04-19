@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-packaging-job-status-structure.json",
+  "name": "ModelPackagingJobStatus",
+  "description": "ModelPackagingJobStatus schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "enum": [
+    "CREATED",
+    "RUNNING",
+    "SUCCEEDED",
+    "FAILED"
+  ]
+}

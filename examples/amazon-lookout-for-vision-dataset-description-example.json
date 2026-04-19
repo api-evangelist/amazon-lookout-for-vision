@@ -1,0 +1,9 @@
+{
+  "ProjectName": "my-project",
+  "DatasetType": "train",
+  "CreationTimestamp": "example-value",
+  "LastUpdatedTimestamp": "example-value",
+  "Status": "TRAINED",
+  "StatusMessage": "TRAINED",
+  "ImageStats": "example-value"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-pixel-anomaly-schema.json",
+  "title": "PixelAnomaly",
+  "description": "Information about the pixels in an anomaly mask. For more information, see <a>Anomaly</a>. <code>PixelAnomaly</code> is only returned by image segmentation models.",
+  "type": "object",
+  "properties": {
+    "TotalPercentageArea": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Float"
+        },
+        {
+          "description": "The percentage area of the image that the anomaly type covers."
+        }
+      ]
+    },
+    "Color": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Color"
+        },
+        {
+          "description": "A hex color value for the mask that covers an anomaly type. Each anomaly type has a different mask color. The color maps to the color of the anomaly type used in the training dataset. "
+        }
+      ]
+    }
+  }
+}

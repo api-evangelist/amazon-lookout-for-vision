@@ -1,0 +1,6 @@
+{
+  "ModelVersion": "1",
+  "JobName": "my-project",
+  "Configuration": "example-value",
+  "Description": "Visual quality inspection model for manufacturing"
+}

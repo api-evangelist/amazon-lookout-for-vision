@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-image-source-schema.json",
+  "title": "ImageSource",
+  "description": "The source for an image.",
+  "type": "object",
+  "properties": {
+    "Type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ImageSourceType"
+        },
+        {
+          "description": "The type of the image."
+        }
+      ]
+    }
+  }
+}

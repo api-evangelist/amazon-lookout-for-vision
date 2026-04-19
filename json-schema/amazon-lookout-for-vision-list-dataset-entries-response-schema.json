@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-list-dataset-entries-response-schema.json",
+  "title": "ListDatasetEntriesResponse",
+  "description": "ListDatasetEntriesResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "DatasetEntries": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetEntryList"
+        },
+        {
+          "description": "A list of the entries (JSON Lines) within the dataset."
+        }
+      ]
+    },
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PaginationToken"
+        },
+        {
+          "description": "If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set ofdataset entries."
+        }
+      ]
+    }
+  }
+}

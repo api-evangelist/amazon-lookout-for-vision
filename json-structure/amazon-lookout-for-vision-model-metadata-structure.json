@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-metadata-structure.json",
+  "name": "ModelMetadata",
+  "description": "Describes an Amazon Lookout for Vision model.",
+  "type": "object",
+  "properties": {
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The unix timestamp for the date and time that the model was created. "
+        }
+      ]
+    },
+    "ModelVersion": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelVersion"
+        },
+        {
+          "description": "The version of the model."
+        }
+      ]
+    },
+    "ModelArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelArn"
+        },
+        {
+          "description": "The Amazon Resource Name (ARN) of the model."
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelDescriptionMessage"
+        },
+        {
+          "description": "The description for the model."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelStatus"
+        },
+        {
+          "description": "The status of the model."
+        }
+      ]
+    },
+    "StatusMessage": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelStatusMessage"
+        },
+        {
+          "description": "The status message for the model."
+        }
+      ]
+    },
+    "Performance": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPerformance"
+        },
+        {
+          "description": "Performance metrics for the model. Not available until training has successfully completed."
+        }
+      ]
+    }
+  }
+}

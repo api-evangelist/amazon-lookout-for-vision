@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-dataset-description-schema.json",
+  "title": "DatasetDescription",
+  "description": "The description for a dataset. For more information, see <a>DescribeDataset</a>.",
+  "type": "object",
+  "properties": {
+    "ProjectName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectName"
+        },
+        {
+          "description": "The name of the project that contains the dataset."
+        }
+      ]
+    },
+    "DatasetType": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetType"
+        },
+        {
+          "description": "The type of the dataset. The value <code>train</code> represents a training dataset or single dataset project. The value <code>test</code> represents a test dataset."
+        }
+      ]
+    },
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The Unix timestamp for the time and date that the dataset was created."
+        }
+      ]
+    },
+    "LastUpdatedTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The Unix timestamp for the date and time that the dataset was last updated."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetStatus"
+        },
+        {
+          "description": "The status of the dataset."
+        }
+      ]
+    },
+    "StatusMessage": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetStatusMessage"
+        },
+        {
+          "description": "The status message for the dataset. "
+        }
+      ]
+    },
+    "ImageStats": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetImageStats"
+        },
+        {
+          "description": "Statistics about the images in a dataset."
+        }
+      ]
+    }
+  }
+}

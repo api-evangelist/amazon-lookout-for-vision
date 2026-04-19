@@ -1,0 +1,9 @@
+{
+  "CreationTimestamp": "example-value",
+  "ModelVersion": "1",
+  "ModelArn": "arn:aws:lookoutvision:us-east-1:123456789012:model/my-project/1",
+  "Description": "Visual quality inspection model for manufacturing",
+  "Status": "TRAINED",
+  "StatusMessage": "TRAINED",
+  "Performance": "example-value"
+}

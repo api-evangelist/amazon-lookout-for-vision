@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-list-models-response-structure.json",
+  "name": "ListModelsResponse",
+  "description": "ListModelsResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Models": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelMetadataList"
+        },
+        {
+          "description": "A list of model versions in the specified project. "
+        }
+      ]
+    },
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PaginationToken"
+        },
+        {
+          "description": "If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of models. "
+        }
+      ]
+    }
+  }
+}

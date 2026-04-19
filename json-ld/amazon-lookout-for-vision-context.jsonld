@@ -1,0 +1,271 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "alv": "https://alv.amazonaws.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Anomaly": "alv:Anomaly",
+    "CreateDatasetRequest": "alv:CreateDatasetRequest",
+    "CreateDatasetResponse": "alv:CreateDatasetResponse",
+    "CreateModelRequest": "alv:CreateModelRequest",
+    "CreateModelResponse": "alv:CreateModelResponse",
+    "CreateProjectRequest": "alv:CreateProjectRequest",
+    "CreateProjectResponse": "alv:CreateProjectResponse",
+    "DatasetDescription": "alv:DatasetDescription",
+    "DatasetGroundTruthManifest": "alv:DatasetGroundTruthManifest",
+    "DatasetImageStats": "alv:DatasetImageStats",
+    "DatasetMetadata": "alv:DatasetMetadata",
+    "DatasetSource": "alv:DatasetSource",
+    "DeleteDatasetRequest": "alv:DeleteDatasetRequest",
+    "DeleteDatasetResponse": "alv:DeleteDatasetResponse",
+    "DeleteModelRequest": "alv:DeleteModelRequest",
+    "DeleteModelResponse": "alv:DeleteModelResponse",
+    "DeleteProjectRequest": "alv:DeleteProjectRequest",
+    "DeleteProjectResponse": "alv:DeleteProjectResponse",
+    "DescribeDatasetRequest": "alv:DescribeDatasetRequest",
+    "DescribeDatasetResponse": "alv:DescribeDatasetResponse",
+    "DescribeModelPackagingJobRequest": "alv:DescribeModelPackagingJobRequest",
+    "DescribeModelPackagingJobResponse": "alv:DescribeModelPackagingJobResponse",
+    "DescribeModelRequest": "alv:DescribeModelRequest",
+    "DescribeModelResponse": "alv:DescribeModelResponse",
+    "DescribeProjectRequest": "alv:DescribeProjectRequest",
+    "DescribeProjectResponse": "alv:DescribeProjectResponse",
+    "DetectAnomaliesRequest": "alv:DetectAnomaliesRequest",
+    "DetectAnomaliesResponse": "alv:DetectAnomaliesResponse",
+    "DetectAnomalyResult": "alv:DetectAnomalyResult",
+    "GreengrassConfiguration": "alv:GreengrassConfiguration",
+    "GreengrassOutputDetails": "alv:GreengrassOutputDetails",
+    "ImageSource": "alv:ImageSource",
+    "InputS3Object": "alv:InputS3Object",
+    "ListDatasetEntriesRequest": "alv:ListDatasetEntriesRequest",
+    "ListDatasetEntriesResponse": "alv:ListDatasetEntriesResponse",
+    "ListModelPackagingJobsRequest": "alv:ListModelPackagingJobsRequest",
+    "ListModelPackagingJobsResponse": "alv:ListModelPackagingJobsResponse",
+    "ListModelsRequest": "alv:ListModelsRequest",
+    "ListModelsResponse": "alv:ListModelsResponse",
+    "ListProjectsRequest": "alv:ListProjectsRequest",
+    "ListProjectsResponse": "alv:ListProjectsResponse",
+    "ListTagsForResourceRequest": "alv:ListTagsForResourceRequest",
+    "ListTagsForResourceResponse": "alv:ListTagsForResourceResponse",
+    "ModelDescription": "alv:ModelDescription",
+    "ModelMetadata": "alv:ModelMetadata",
+    "ModelPackagingConfiguration": "alv:ModelPackagingConfiguration",
+    "ModelPackagingDescription": "alv:ModelPackagingDescription",
+    "ModelPackagingJobMetadata": "alv:ModelPackagingJobMetadata",
+    "ModelPackagingOutputDetails": "alv:ModelPackagingOutputDetails",
+    "ModelPerformance": "alv:ModelPerformance",
+    "OutputConfig": "alv:OutputConfig",
+    "OutputS3Object": "alv:OutputS3Object",
+    "PixelAnomaly": "alv:PixelAnomaly",
+    "ProjectDescription": "alv:ProjectDescription",
+    "ProjectMetadata": "alv:ProjectMetadata",
+    "S3Location": "alv:S3Location",
+    "StartModelPackagingJobRequest": "alv:StartModelPackagingJobRequest",
+    "StartModelPackagingJobResponse": "alv:StartModelPackagingJobResponse",
+    "StartModelRequest": "alv:StartModelRequest",
+    "StartModelResponse": "alv:StartModelResponse",
+    "StopModelRequest": "alv:StopModelRequest",
+    "StopModelResponse": "alv:StopModelResponse",
+    "Tag": "alv:Tag",
+    "TagResourceRequest": "alv:TagResourceRequest",
+    "TagResourceResponse": "alv:TagResourceResponse",
+    "TargetPlatform": "alv:TargetPlatform",
+    "UntagResourceRequest": "alv:UntagResourceRequest",
+    "UntagResourceResponse": "alv:UntagResourceResponse",
+    "UpdateDatasetEntriesRequest": "alv:UpdateDatasetEntriesRequest",
+    "UpdateDatasetEntriesResponse": "alv:UpdateDatasetEntriesResponse",
+    "Accelerator": {
+      "@id": "alv:Accelerator"
+    },
+    "Anomalies": {
+      "@id": "alv:Anomalies"
+    },
+    "AnomalyMask": {
+      "@id": "alv:AnomalyMask"
+    },
+    "Arch": {
+      "@id": "alv:Arch"
+    },
+    "Body": {
+      "@id": "alv:Body"
+    },
+    "Bucket": {
+      "@id": "alv:Bucket"
+    },
+    "Changes": {
+      "@id": "alv:Changes"
+    },
+    "Color": {
+      "@id": "alv:Color"
+    },
+    "CompilerOptions": {
+      "@id": "alv:CompilerOptions"
+    },
+    "ComponentDescription": {
+      "@id": "alv:ComponentDescription"
+    },
+    "ComponentName": {
+      "@id": "alv:ComponentName"
+    },
+    "ComponentVersion": {
+      "@id": "alv:ComponentVersion"
+    },
+    "ComponentVersionArn": {
+      "@id": "alv:ComponentVersionArn"
+    },
+    "Confidence": {
+      "@id": "alv:Confidence"
+    },
+    "Configuration": {
+      "@id": "alv:Configuration"
+    },
+    "CreationTimestamp": {
+      "@id": "alv:CreationTimestamp"
+    },
+    "DatasetEntries": {
+      "@id": "alv:DatasetEntries"
+    },
+    "DatasetType": {
+      "@id": "alv:DatasetType"
+    },
+    "Datasets": {
+      "@id": "alv:Datasets"
+    },
+    "Description": {
+      "@id": "alv:Description"
+    },
+    "EvaluationEndTimestamp": {
+      "@id": "alv:EvaluationEndTimestamp"
+    },
+    "EvaluationManifest": {
+      "@id": "alv:EvaluationManifest"
+    },
+    "EvaluationResult": {
+      "@id": "alv:EvaluationResult"
+    },
+    "F1Score": {
+      "@id": "alv:F1Score"
+    },
+    "Greengrass": {
+      "@id": "alv:Greengrass"
+    },
+    "GroundTruthManifest": {
+      "@id": "alv:GroundTruthManifest"
+    },
+    "ImageStats": {
+      "@id": "alv:ImageStats"
+    },
+    "IsAnomalous": {
+      "@id": "alv:IsAnomalous"
+    },
+    "JobName": {
+      "@id": "alv:JobName"
+    },
+    "Key": {
+      "@id": "alv:Key"
+    },
+    "KmsKeyId": {
+      "@id": "alv:KmsKeyId"
+    },
+    "Labeled": {
+      "@id": "alv:Labeled"
+    },
+    "LastUpdatedTimestamp": {
+      "@id": "alv:LastUpdatedTimestamp"
+    },
+    "MaxInferenceUnits": {
+      "@id": "alv:MaxInferenceUnits"
+    },
+    "MinInferenceUnits": {
+      "@id": "alv:MinInferenceUnits"
+    },
+    "ModelArn": {
+      "@id": "alv:ModelArn"
+    },
+    "ModelPackagingJobDescription": {
+      "@id": "alv:ModelPackagingJobDescription"
+    },
+    "ModelPackagingJobs": {
+      "@id": "alv:ModelPackagingJobs"
+    },
+    "ModelPackagingMethod": {
+      "@id": "alv:ModelPackagingMethod"
+    },
+    "ModelVersion": {
+      "@id": "alv:ModelVersion"
+    },
+    "Models": {
+      "@id": "alv:Models"
+    },
+    "Name": {
+      "@id": "alv:Name"
+    },
+    "NextToken": {
+      "@id": "alv:NextToken"
+    },
+    "Normal": {
+      "@id": "alv:Normal"
+    },
+    "Os": {
+      "@id": "alv:Os"
+    },
+    "Performance": {
+      "@id": "alv:Performance"
+    },
+    "Precision": {
+      "@id": "alv:Precision"
+    },
+    "Prefix": {
+      "@id": "alv:Prefix"
+    },
+    "ProjectArn": {
+      "@id": "alv:ProjectArn"
+    },
+    "ProjectName": {
+      "@id": "alv:ProjectName"
+    },
+    "Projects": {
+      "@id": "alv:Projects"
+    },
+    "Recall": {
+      "@id": "alv:Recall"
+    },
+    "S3Object": {
+      "@id": "alv:S3Object"
+    },
+    "S3OutputLocation": {
+      "@id": "alv:S3OutputLocation"
+    },
+    "Source": {
+      "@id": "alv:Source"
+    },
+    "Status": {
+      "@id": "alv:Status"
+    },
+    "StatusMessage": {
+      "@id": "alv:StatusMessage"
+    },
+    "Tags": {
+      "@id": "alv:Tags"
+    },
+    "TargetDevice": {
+      "@id": "alv:TargetDevice"
+    },
+    "Total": {
+      "@id": "alv:Total"
+    },
+    "TotalPercentageArea": {
+      "@id": "alv:TotalPercentageArea"
+    },
+    "Type": {
+      "@id": "alv:Type"
+    },
+    "Value": {
+      "@id": "alv:Value"
+    },
+    "VersionId": {
+      "@id": "alv:VersionId"
+    }
+  }
+}

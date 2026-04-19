@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-model-packaging-output-details-schema.json",
+  "title": "ModelPackagingOutputDetails",
+  "description": " Information about the output from a model packaging job. ",
+  "type": "object",
+  "properties": {
+    "Greengrass": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/GreengrassOutputDetails"
+        },
+        {
+          "description": " Information about the AWS IoT Greengrass component in a model packaging job. "
+        }
+      ]
+    }
+  }
+}

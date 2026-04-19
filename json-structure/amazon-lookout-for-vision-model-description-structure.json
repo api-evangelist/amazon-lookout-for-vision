@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-description-structure.json",
+  "name": "ModelDescription",
+  "description": "Describes an Amazon Lookout for Vision model.",
+  "type": "object",
+  "properties": {
+    "ModelVersion": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelVersion"
+        },
+        {
+          "description": "The version of the model"
+        }
+      ]
+    },
+    "ModelArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelArn"
+        },
+        {
+          "description": "The Amazon Resource Name (ARN) of the model."
+        }
+      ]
+    },
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The unix timestamp for the date and time that the model was created. "
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelDescriptionMessage"
+        },
+        {
+          "description": "The description for the model."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelStatus"
+        },
+        {
+          "description": "The status of the model."
+        }
+      ]
+    },
+    "StatusMessage": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelStatusMessage"
+        },
+        {
+          "description": "The status message for the model."
+        }
+      ]
+    },
+    "Performance": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPerformance"
+        },
+        {
+          "description": "Performance metrics for the model. Created during training."
+        }
+      ]
+    },
+    "OutputConfig": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/OutputConfig"
+        },
+        {
+          "description": "The S3 location where Amazon Lookout for Vision saves model training files."
+        }
+      ]
+    },
+    "EvaluationManifest": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/OutputS3Object"
+        },
+        {
+          "description": "The S3 location where Amazon Lookout for Vision saves the manifest file that was used to test the trained model and generate the performance scores."
+        }
+      ]
+    },
+    "EvaluationResult": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/OutputS3Object"
+        },
+        {
+          "description": "The S3 location where Amazon Lookout for Vision saves the performance metrics."
+        }
+      ]
+    },
+    "EvaluationEndTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The unix timestamp for the date and time that the evaluation ended. "
+        }
+      ]
+    },
+    "KmsKeyId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/KmsKeyId"
+        },
+        {
+          "description": "The identifer for the AWS Key Management Service (AWS KMS) key that was used to encrypt the model during training."
+        }
+      ]
+    },
+    "MinInferenceUnits": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InferenceUnits"
+        },
+        {
+          "description": "The minimum number of inference units used by the model. For more information, see <a>StartModel</a> "
+        }
+      ]
+    },
+    "MaxInferenceUnits": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InferenceUnits"
+        },
+        {
+          "description": "The maximum number of inference units Amazon Lookout for Vision uses to auto-scale the model. For more information, see <a>StartModel</a>."
+        }
+      ]
+    }
+  }
+}

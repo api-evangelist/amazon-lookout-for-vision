@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-anomaly-schema.json",
+  "title": "Anomaly",
+  "description": "Information about an anomaly type found on an image by an image segmentation model. For more information, see <a>DetectAnomalies</a>.",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyName"
+        },
+        {
+          "description": "The name of an anomaly type found in an image. <code>Name</code> maps to an anomaly type in the training dataset, apart from the anomaly type <code>background</code>. The service automatically inserts the <code>background</code> anomaly type into the response from <code>DetectAnomalies</code>. "
+        }
+      ]
+    },
+    "PixelAnomaly": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PixelAnomaly"
+        },
+        {
+          "description": "Information about the pixel mask that covers an anomaly type."
+        }
+      ]
+    }
+  }
+}

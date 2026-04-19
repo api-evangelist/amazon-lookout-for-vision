@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-component-version-arn-structure.json",
+  "name": "ComponentVersionArn",
+  "description": "ComponentVersionArn schema from Amazon Lookout for Vision API",
+  "type": "string",
+  "pattern": "arn:[^:]*:greengrass:[^:]*:aws:components:[^:]+"
+}

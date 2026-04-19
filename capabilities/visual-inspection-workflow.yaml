@@ -1,0 +1,190 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Amazon Lookout for Vision - Visual Inspection Workflow"
+  description: "Workflow capability for manufacturing and quality teams to build, train, and deploy computer vision models for automated visual quality inspection using Amazon Lookout for Vision."
+  tags:
+    - Amazon
+    - Computer Vision
+    - Machine Learning
+    - Manufacturing
+    - Quality Inspection
+    - Visual Inspection
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - import: lookout-for-vision
+      location: ./shared/lookout-for-vision.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: visual-inspection-api
+      description: "Unified REST API for visual quality inspection workflows."
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "Inspection projects"
+          operations:
+            - method: POST
+              name: create-project
+              description: "Create a visual inspection project"
+              call: "lookout-for-vision.create-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-projects
+              description: "List all inspection projects"
+              call: "lookout-for-vision.list-projects"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{id}/models
+          name: models
+          description: "Visual inspection models"
+          operations:
+            - method: POST
+              name: train-model
+              description: "Train a new inspection model"
+              call: "lookout-for-vision.create-model"
+              with:
+                projectName: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-models
+              description: "List trained models"
+              call: "lookout-for-vision.list-models"
+              with:
+                projectName: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{id}/models/{modelVersion}/detect
+          name: detection
+          description: "Run anomaly detection on images"
+          operations:
+            - method: POST
+              name: detect-anomalies
+              description: "Detect visual anomalies in an image"
+              call: "lookout-for-vision.detect-anomalies"
+              with:
+                projectName: "rest.id"
+                modelVersion: "rest.modelVersion"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: visual-inspection-mcp
+      transport: http
+      description: "MCP server for AI-assisted visual quality inspection with Amazon Lookout for Vision."
+      tools:
+        - name: create-inspection-project
+          description: "Create a new visual quality inspection project"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "lookout-for-vision.create-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-inspection-projects
+          description: "List all visual inspection projects"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.list-projects"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: train-inspection-model
+          description: "Train a computer vision model for defect detection"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "lookout-for-vision.create-model"
+          with:
+            projectName: "tools.projectName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: start-inspection-model
+          description: "Start a trained model to enable real-time inspection"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.start-model"
+          with:
+            projectName: "tools.projectName"
+            modelVersion: "tools.modelVersion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: inspect-image
+          description: "Run anomaly detection on a product image to identify defects"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.detect-anomalies"
+          with:
+            projectName: "tools.projectName"
+            modelVersion: "tools.modelVersion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-model-status
+          description: "Check the training status and performance metrics of an inspection model"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.describe-model"
+          with:
+            projectName: "tools.projectName"
+            modelVersion: "tools.modelVersion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: stop-inspection-model
+          description: "Stop a running model to reduce costs when not actively inspecting"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.stop-model"
+          with:
+            projectName: "tools.projectName"
+            modelVersion: "tools.modelVersion"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-inspection-models
+          description: "List all trained inspection models in a project"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "lookout-for-vision.list-models"
+          with:
+            projectName: "tools.projectName"
+          outputParameters:
+            - type: object
+              mapping: "$."

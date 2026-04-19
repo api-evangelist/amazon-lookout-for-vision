@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-start-model-packaging-job-response-structure.json",
+  "name": "StartModelPackagingJobResponse",
+  "description": "StartModelPackagingJobResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "JobName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobName"
+        },
+        {
+          "description": "The job name for the model packaging job. If you don't supply a job name in the <code>JobName</code> input parameter, the service creates a job name for you. "
+        }
+      ]
+    }
+  }
+}

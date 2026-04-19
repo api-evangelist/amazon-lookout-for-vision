@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-describe-dataset-response-structure.json",
+  "name": "DescribeDatasetResponse",
+  "description": "DescribeDatasetResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "DatasetDescription": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetDescription"
+        },
+        {
+          "description": "The description of the requested dataset. "
+        }
+      ]
+    }
+  }
+}

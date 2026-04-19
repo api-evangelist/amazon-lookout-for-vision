@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-project-metadata-schema.json",
+  "title": "ProjectMetadata",
+  "description": "Metadata about an Amazon Lookout for Vision project.",
+  "type": "object",
+  "properties": {
+    "ProjectArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectArn"
+        },
+        {
+          "description": "The Amazon Resource Name (ARN) of the project."
+        }
+      ]
+    },
+    "ProjectName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectName"
+        },
+        {
+          "description": "The name of the project."
+        }
+      ]
+    },
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The unix timestamp for the date and time that the project was created. "
+        }
+      ]
+    }
+  }
+}

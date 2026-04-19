@@ -1,0 +1,177 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Amazon Lookout for Vision"
+  description: "Unified vocabulary taxonomy for Amazon Lookout for Vision covering computer vision model management, visual quality inspection, and anomaly detection."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: lookout-for-vision
+      version: "2020-11-20"
+      baseUrl: https://lookoutvision.{region}.amazonaws.com
+      status: active
+      description: "Amazon Lookout for Vision REST API"
+
+  resources:
+    - name: projects
+      apis: [lookout-for-vision]
+      actions: [create, list, describe, delete]
+    - name: models
+      apis: [lookout-for-vision]
+      actions: [create, list, describe, delete, start, stop]
+    - name: datasets
+      apis: [lookout-for-vision]
+      actions: [create, describe, delete, list-entries, update-entries]
+    - name: anomaly-detection
+      apis: [lookout-for-vision]
+      actions: [detect]
+    - name: model-packaging-jobs
+      apis: [lookout-for-vision]
+      actions: [start, describe, list]
+    - name: tags
+      apis: [lookout-for-vision]
+      actions: [list, add, remove]
+
+  actions:
+    - name: create
+      httpMethods: [POST]
+      pattern: write
+    - name: list
+      httpMethods: [GET]
+      pattern: read
+    - name: describe
+      httpMethods: [GET]
+      pattern: read
+    - name: delete
+      httpMethods: [DELETE]
+      pattern: destructive
+    - name: start
+      httpMethods: [POST]
+      pattern: write
+    - name: stop
+      httpMethods: [POST]
+      pattern: write
+    - name: detect
+      httpMethods: [POST]
+      pattern: query
+    - name: update
+      httpMethods: [PATCH]
+      pattern: write
+
+  schemas:
+    core:
+      - ProjectMetadata
+      - ModelMetadata
+      - ModelDescription
+      - DatasetDescription
+    detection:
+      - DetectAnomaliesResponse
+      - DetectedAnomalyWithAnomalyTypes
+      - AnomalyClass
+    datasets:
+      - DatasetGroundTruthManifest
+      - DatasetMetadata
+      - DatasetSource
+
+  parameters:
+    pagination:
+      - NextToken
+      - MaxResults
+    identifiers:
+      - projectName
+      - modelVersion
+      - datasetType
+      - jobName
+
+  enums:
+    model-status:
+      - TRAINING
+      - TRAINED
+      - TRAINING_FAILED
+      - STARTING_HOSTING
+      - HOSTED
+      - HOSTING_FAILED
+      - STOPPING_HOSTING
+      - SYSTEM_UPDATING
+      - DELETING
+    dataset-type:
+      - train
+      - test
+
+  authentication:
+    schemes:
+      - type: aws-sigv4
+        name: AWS Signature Version 4
+        description: "AWS Signature Version 4 authentication"
+        apis: [lookout-for-vision]
+
+capability:
+  workflows:
+    - name: Visual Inspection Workflow
+      file: capabilities/visual-inspection-workflow.yaml
+      description: "Workflow for building and deploying computer vision models for quality inspection"
+      apisComposed: [lookout-for-vision]
+      toolCount: 8
+      personas:
+        - Manufacturing Engineer
+        - Quality Inspector
+
+  personas:
+    - id: manufacturing-engineer
+      name: "Manufacturing Engineer"
+      description: "Builds and trains computer vision models for automated defect detection"
+      workflows: [Visual Inspection Workflow]
+    - id: quality-inspector
+      name: "Quality Inspector"
+      description: "Runs inspection models on product images to detect defects in real time"
+      workflows: [Visual Inspection Workflow]
+
+  domains:
+    - name: Model Management
+      description: "Training and lifecycle management of computer vision models"
+      resources: [projects, models]
+    - name: Visual Inspection
+      description: "Running anomaly detection on product images"
+      resources: [anomaly-detection]
+    - name: Dataset Management
+      description: "Managing training and test datasets"
+      resources: [datasets]
+
+  namespaces:
+    - name: lookout-for-vision
+      type: consumed
+      baseUri: https://lookoutvision.{region}.amazonaws.com
+    - name: visual-inspection-api
+      type: rest-exposed
+      port: 8080
+    - name: visual-inspection-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: AWS_ACCESS_KEY_ID
+      workflows: [Visual Inspection Workflow]
+    - name: AWS_SECRET_ACCESS_KEY
+      workflows: [Visual Inspection Workflow]
+    - name: AWS_REGION
+      workflows: [Visual Inspection Workflow]
+
+crossReference:
+  - resource: projects
+    operations: [CreateProject, ListProjects, DescribeProject, DeleteProject]
+    workflows: [Visual Inspection Workflow]
+    personas: [Manufacturing Engineer, Quality Inspector]
+  - resource: models
+    operations: [CreateModel, ListModels, DescribeModel, DeleteModel, StartModel, StopModel]
+    workflows: [Visual Inspection Workflow]
+    personas: [Manufacturing Engineer]
+  - resource: anomaly-detection
+    operations: [DetectAnomalies]
+    workflows: [Visual Inspection Workflow]
+    personas: [Quality Inspector, Manufacturing Engineer]
+  - resource: datasets
+    operations: [CreateDataset, DescribeDataset, DeleteDataset, ListDatasetEntries, UpdateDatasetEntries]
+    workflows: [Visual Inspection Workflow]
+    personas: [Manufacturing Engineer]

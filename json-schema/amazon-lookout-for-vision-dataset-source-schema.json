@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-dataset-source-schema.json",
+  "title": "DatasetSource",
+  "description": "Information about the location of a manifest file that Amazon Lookout for Vision uses to to create a dataset.",
+  "type": "object",
+  "properties": {
+    "GroundTruthManifest": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetGroundTruthManifest"
+        },
+        {
+          "description": "Location information for the manifest file."
+        }
+      ]
+    }
+  }
+}

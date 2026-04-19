@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-dataset-image-stats-schema.json",
+  "title": "DatasetImageStats",
+  "description": "Statistics about the images in a dataset.",
+  "type": "object",
+  "properties": {
+    "Total": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Integer"
+        },
+        {
+          "description": "The total number of images in the dataset."
+        }
+      ]
+    },
+    "Labeled": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Integer"
+        },
+        {
+          "description": "The total number of labeled images."
+        }
+      ]
+    },
+    "Normal": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Integer"
+        },
+        {
+          "description": "The total number of images labeled as normal."
+        }
+      ]
+    },
+    "Anomaly": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Integer"
+        },
+        {
+          "description": "the total number of images labeled as an anomaly."
+        }
+      ]
+    }
+  }
+}

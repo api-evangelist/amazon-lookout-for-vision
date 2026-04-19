@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-list-tags-for-resource-response-schema.json",
+  "title": "ListTagsForResourceResponse",
+  "description": "ListTagsForResourceResponse schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "Tags": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TagList"
+        },
+        {
+          "description": "A map of tag keys and values attached to the specified model."
+        }
+      ]
+    }
+  }
+}

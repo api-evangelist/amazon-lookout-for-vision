@@ -1,0 +1,6 @@
+{
+  "Description": "Visual quality inspection model for manufacturing",
+  "OutputConfig": "example-value",
+  "KmsKeyId": "example-value",
+  "Tags": "example-value"
+}

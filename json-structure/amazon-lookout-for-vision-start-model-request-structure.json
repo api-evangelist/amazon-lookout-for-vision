@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-start-model-request-structure.json",
+  "name": "StartModelRequest",
+  "description": "StartModelRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "MinInferenceUnits": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InferenceUnits"
+        },
+        {
+          "description": "The minimum number of inference units to use. A single inference unit represents 1 hour of processing. Use a higher number to increase the TPS throughput of your model. You are charged for the number of inference units that you use. "
+        }
+      ]
+    },
+    "MaxInferenceUnits": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InferenceUnits"
+        },
+        {
+          "description": "The maximum number of inference units to use for auto-scaling the model. If you don't specify a value, Amazon Lookout for Vision doesn't auto-scale the model."
+        }
+      ]
+    }
+  },
+  "required": [
+    "MinInferenceUnits"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-output-config-schema.json",
+  "title": "OutputConfig",
+  "description": "The S3 location where Amazon Lookout for Vision saves model training files.",
+  "type": "object",
+  "properties": {
+    "S3Location": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/S3Location"
+        },
+        {
+          "description": "The S3 location for the output."
+        }
+      ]
+    }
+  },
+  "required": [
+    "S3Location"
+  ]
+}

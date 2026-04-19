@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-create-dataset-request-structure.json",
+  "name": "CreateDatasetRequest",
+  "description": "CreateDatasetRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "DatasetType": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetType"
+        },
+        {
+          "description": "The type of the dataset. Specify <code>train</code> for a training dataset. Specify <code>test</code> for a test dataset."
+        }
+      ]
+    },
+    "DatasetSource": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DatasetSource"
+        },
+        {
+          "description": "<p>The location of the manifest file that Amazon Lookout for Vision uses to create the dataset.</p> <p>If you don't specify <code>DatasetSource</code>, an empty dataset is created and the operation synchronously returns. Later, you can add JSON Lines by calling <a>UpdateDatasetEntries</a>. </p> <p>If you specify a value for <code>DataSource</code>, the manifest at the S3 location is validated and used to create the dataset. The call to <code>CreateDataset</code> is asynchronous and might take a while to complete. To find out the current status, Check the value of <code>Status</code> returned in a call to <a>DescribeDataset</a>.</p>"
+        }
+      ]
+    }
+  },
+  "required": [
+    "DatasetType"
+  ]
+}

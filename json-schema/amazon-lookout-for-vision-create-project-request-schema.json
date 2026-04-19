@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-schema/amazon-lookout-for-vision-create-project-request-schema.json",
+  "title": "CreateProjectRequest",
+  "description": "CreateProjectRequest schema from Amazon Lookout for Vision API",
+  "type": "object",
+  "properties": {
+    "ProjectName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectName"
+        },
+        {
+          "description": "The name for the project."
+        }
+      ]
+    }
+  },
+  "required": [
+    "ProjectName"
+  ]
+}

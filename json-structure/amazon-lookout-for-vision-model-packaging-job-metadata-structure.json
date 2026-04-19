@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/json-structure/amazon-lookout-for-vision-model-packaging-job-metadata-structure.json",
+  "name": "ModelPackagingJobMetadata",
+  "description": " Metadata for a model packaging job. For more information, see <a>ListModelPackagingJobs</a>. ",
+  "type": "object",
+  "properties": {
+    "JobName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobName"
+        },
+        {
+          "description": " The name of the model packaging job. "
+        }
+      ]
+    },
+    "ProjectName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ProjectName"
+        },
+        {
+          "description": " The project that contains the model that is in the model package. "
+        }
+      ]
+    },
+    "ModelVersion": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelVersion"
+        },
+        {
+          "description": " The version of the model that is in the model package. "
+        }
+      ]
+    },
+    "ModelPackagingJobDescription": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobDescription"
+        },
+        {
+          "description": " The description for the model packaging job. "
+        }
+      ]
+    },
+    "ModelPackagingMethod": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingMethod"
+        },
+        {
+          "description": " The AWS service used to package the job. Currently Lookout for Vision can package jobs with AWS IoT Greengrass. "
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingJobStatus"
+        },
+        {
+          "description": "The status of the model packaging job. "
+        }
+      ]
+    },
+    "StatusMessage": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ModelPackagingStatusMessage"
+        },
+        {
+          "description": "The status message for the model packaging job. "
+        }
+      ]
+    },
+    "CreationTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The Unix timestamp for the time and date that the model packaging job was created."
+        }
+      ]
+    },
+    "LastUpdatedTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DateTime"
+        },
+        {
+          "description": "The Unix timestamp for the time and date that the model packaging job was last updated."
+        }
+      ]
+    }
+  }
+}
