@@ -118,6 +118,17 @@ common:
         description: Monitor model performance metrics and detection results in CloudWatch.
       - name: AWS KMS
         description: Encrypt model artifacts using AWS Key Management Service.
+  - type: Integrations
+    url: https://aws.amazon.com/partners/
+integrations:
+  - name: Partner Programs
+  - name: Resources
+  - name: Success Stories
+  - name: Work with an AWS Partner
+  - name: AWS Marketplace
+  - name: AWS Partner Central
+  - name: Partner Paths
+  - name: co-sell with AWS
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
