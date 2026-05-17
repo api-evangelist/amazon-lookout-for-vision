@@ -51,7 +51,7 @@ apis:
         url: json-schema/amazon-lookout-for-vision-anomaly-class-schema.json
       - type: JSONStructure
         url: json-structure/amazon-lookout-for-vision-anomaly-class-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/amazon-lookout-for-vision-context.jsonld
 common:
   - type: Portal
