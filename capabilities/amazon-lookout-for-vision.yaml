@@ -1,0 +1,1246 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Lookout for Vision
+  description: 'Amazon Lookout for Vision. 22 operations. Lead operation: Amazon Lookout for Vision Create Project. Self-contained
+    Naftiko capability covering one Amazon Lookout For Vision business surface.'
+  tags:
+  - Amazon Lookout For Vision
+  - Amazon Lookout for Vision
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_LOOKOUT_FOR_VISION_API_KEY: AMAZON_LOOKOUT_FOR_VISION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-lookout-for-vision
+    baseUri: http://lookoutvision.{region}.amazonaws.com
+    description: Amazon Lookout for Vision business capability. Self-contained, no shared references.
+    resources:
+    - name: 2020-11-20-projects
+      path: /2020-11-20/projects
+      operations:
+      - name: createproject
+        method: POST
+        description: Amazon Lookout for Vision Create Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>CreateProject</code> completes
+            only once. You choose the value to pass. For example, An issu
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listprojects
+        method: GET
+        description: Amazon Lookout for Vision List Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nextToken
+          in: query
+          type: string
+          description: 'If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for
+            Vision returns a pagination token in the response. You can '
+        - name: maxResults
+          in: query
+          type: integer
+          description: The maximum number of results to return per paginated call. The largest value you can specify is 100.
+            If you specify a value greater than 100, a ValidationExcep
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+    - name: 2020-11-20-projects-projectName
+      path: /2020-11-20/projects/{projectName}
+      operations:
+      - name: deleteproject
+        method: DELETE
+        description: Amazon Lookout for Vision Delete Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project to delete.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>DeleteProject</code> completes
+            only once. You choose the value to pass. For example, An issu
+      - name: describeproject
+        method: GET
+        description: Amazon Lookout for Vision Describe Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that you want to describe.
+          required: true
+    - name: 2020-11-20-projects-projectName-datasets
+      path: /2020-11-20/projects/{projectName}/datasets
+      operations:
+      - name: createdataset
+        method: POST
+        description: Amazon Lookout for Vision Create Dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project in which you want to create a dataset.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>CreateDataset</code> completes
+            only once. You choose the value to pass. For example, An issu
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-projects-projectName-datasets-datasetType
+      path: /2020-11-20/projects/{projectName}/datasets/{datasetType}
+      operations:
+      - name: deletedataset
+        method: DELETE
+        description: Amazon Lookout for Vision Delete Dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the dataset that you want to delete.
+          required: true
+        - name: datasetType
+          in: path
+          type: string
+          description: The type of the dataset to delete. Specify <code>train</code> to delete the training dataset. Specify
+            <code>test</code> to delete the test dataset. To delete th
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>DeleteDataset</code> completes
+            only once. You choose the value to pass. For example, An issu
+      - name: describedataset
+        method: GET
+        description: Amazon Lookout for Vision Describe Dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the dataset that you want to describe.
+          required: true
+        - name: datasetType
+          in: path
+          type: string
+          description: The type of the dataset to describe. Specify <code>train</code> to describe the training dataset. Specify
+            <code>test</code> to describe the test dataset. If you
+          required: true
+    - name: 2020-11-20-projects-projectName-datasets-datasetType-entries
+      path: /2020-11-20/projects/{projectName}/datasets/{datasetType}/entries
+      operations:
+      - name: listdatasetentries
+        method: GET
+        description: Amazon Lookout for Vision List Dataset Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the dataset that you want to list.
+          required: true
+        - name: datasetType
+          in: path
+          type: string
+          description: The type of the dataset that you want to list. Specify <code>train</code> to list the training dataset.
+            Specify <code>test</code> to list the test dataset. If y
+          required: true
+        - name: labeled
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to include labeled entries, otherwise specify <code>false</code>. If you
+            don't specify a value, Lookout for Vision returns all entries
+        - name: anomalyClass
+          in: query
+          type: string
+          description: 'Specify <code>normal</code> to include only normal images. Specify <code>anomaly</code> to only include
+            anomalous entries. If you don''t specify a value, Amazon '
+        - name: createdBefore
+          in: query
+          type: string
+          description: Only includes entries before the specified date in the response. For example, <code>2020-06-23T00:00:00</code>.
+        - name: createdAfter
+          in: query
+          type: string
+          description: Only includes entries after the specified date in the response. For example, <code>2020-06-23T00:00:00</code>.
+        - name: nextToken
+          in: query
+          type: string
+          description: 'If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for
+            Vision returns a pagination token in the response. You can '
+        - name: maxResults
+          in: query
+          type: integer
+          description: The maximum number of results to return per paginated call. The largest value you can specify is 100.
+            If you specify a value greater than 100, a ValidationExcep
+        - name: sourceRefContains
+          in: query
+          type: string
+          description: Perform a "contains" search on the values of the <code>source-ref</code> key within the dataset. For
+            example a value of "IMG_17" returns all JSON Lines where th
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+      - name: updatedatasetentries
+        method: PATCH
+        description: Amazon Lookout for Vision Update Dataset Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the dataset that you want to update.
+          required: true
+        - name: datasetType
+          in: path
+          type: string
+          description: The type of the dataset that you want to update. Specify <code>train</code> to update the training
+            dataset. Specify <code>test</code> to update the test dataset
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: '<p>ClientToken is an idempotency token that ensures a call to <code>UpdateDatasetEntries</code> completes
+            only once. You choose the value to pass. For example, '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-projects-projectName-modelpackagingjobs
+      path: /2020-11-20/projects/{projectName}/modelpackagingjobs
+      operations:
+      - name: listmodelpackagingjobs
+        method: GET
+        description: Amazon Lookout for Vision List Model Packaging Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project for which you want to list the model packaging jobs.
+          required: true
+        - name: nextToken
+          in: query
+          type: string
+          description: If the previous response was incomplete (because there is more results to retrieve), Amazon Lookout
+            for Vision returns a pagination token in the response. You c
+        - name: maxResults
+          in: query
+          type: integer
+          description: The maximum number of results to return per paginated call. The largest value you can specify is 100.
+            If you specify a value greater than 100, a ValidationExcep
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+      - name: startmodelpackagingjob
+        method: POST
+        description: Amazon Lookout for Vision Start Model Packaging Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project which contains the version of the model that you want to package.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>StartModelPackagingJob</code> completes
+            only once. You choose the value to pass. For example
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-projects-projectName-modelpackagingjobs-jobName
+      path: /2020-11-20/projects/{projectName}/modelpackagingjobs/{jobName}
+      operations:
+      - name: describemodelpackagingjob
+        method: GET
+        description: Amazon Lookout for Vision Describe Model Packaging Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model packaging job that you want to describe.
+          required: true
+        - name: jobName
+          in: path
+          type: string
+          description: The job name for the model packaging job.
+          required: true
+    - name: 2020-11-20-projects-projectName-models
+      path: /2020-11-20/projects/{projectName}/models
+      operations:
+      - name: createmodel
+        method: POST
+        description: Amazon Lookout for Vision Create Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project in which you want to create a model version.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: '<p>ClientToken is an idempotency token that ensures a call to <code>CreateModel</code> completes only
+            once. You choose the value to pass. For example, An issue '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmodels
+        method: GET
+        description: Amazon Lookout for Vision List Models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model versions that you want to list.
+          required: true
+        - name: nextToken
+          in: query
+          type: string
+          description: 'If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for
+            Vision returns a pagination token in the response. You can '
+        - name: maxResults
+          in: query
+          type: integer
+          description: The maximum number of results to return per paginated call. The largest value you can specify is 100.
+            If you specify a value greater than 100, a ValidationExcep
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+    - name: 2020-11-20-projects-projectName-models-modelVersion
+      path: /2020-11-20/projects/{projectName}/models/{modelVersion}
+      operations:
+      - name: deletemodel
+        method: DELETE
+        description: Amazon Lookout for Vision Delete Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model that you want to delete.
+          required: true
+        - name: modelVersion
+          in: path
+          type: string
+          description: The version of the model that you want to delete.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: '<p>ClientToken is an idempotency token that ensures a call to <code>DeleteModel</code> completes only
+            once. You choose the value to pass. For example, an issue '
+      - name: describemodel
+        method: GET
+        description: Amazon Lookout for Vision Describe Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The project that contains the version of a model that you want to describe.
+          required: true
+        - name: modelVersion
+          in: path
+          type: string
+          description: The version of the model that you want to describe.
+          required: true
+    - name: 2020-11-20-projects-projectName-models-modelVersion-detect#Content-Type
+      path: /2020-11-20/projects/{projectName}/models/{modelVersion}/detect#Content-Type
+      operations:
+      - name: detectanomalies
+        method: POST
+        description: Amazon Lookout for Vision Detect Anomalies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model version that you want to use.
+          required: true
+        - name: modelVersion
+          in: path
+          type: string
+          description: The version of the model that you want to use.
+          required: true
+        - name: Content-Type
+          in: header
+          type: string
+          description: The type of the image passed in <code>Body</code>. Valid values are <code>image/png</code> (PNG format
+            images) and <code>image/jpeg</code> (JPG format images).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-projects-projectName-models-modelVersion-start
+      path: /2020-11-20/projects/{projectName}/models/{modelVersion}/start
+      operations:
+      - name: startmodel
+        method: POST
+        description: Amazon Lookout for Vision Start Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model that you want to start.
+          required: true
+        - name: modelVersion
+          in: path
+          type: string
+          description: The version of the model that you want to start.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>StartModel</code> completes only
+            once. You choose the value to pass. For example, An issue m
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-projects-projectName-models-modelVersion-stop
+      path: /2020-11-20/projects/{projectName}/models/{modelVersion}/stop
+      operations:
+      - name: stopmodel
+        method: POST
+        description: Amazon Lookout for Vision Stop Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectName
+          in: path
+          type: string
+          description: The name of the project that contains the model that you want to stop.
+          required: true
+        - name: modelVersion
+          in: path
+          type: string
+          description: The version of the model that you want to stop.
+          required: true
+        - name: X-Amzn-Client-Token
+          in: header
+          type: string
+          description: <p>ClientToken is an idempotency token that ensures a call to <code>StopModel</code> completes only
+            once. You choose the value to pass. For example, An issue mi
+    - name: 2020-11-20-tags-resourceArn
+      path: /2020-11-20/tags/{resourceArn}
+      operations:
+      - name: listtagsforresource
+        method: GET
+        description: Amazon Lookout for Vision List Tags for Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the model for which you want to list tags.
+          required: true
+      - name: tagresource
+        method: POST
+        description: Amazon Lookout for Vision Tag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the model to assign the tags.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2020-11-20-tags-resourceArn}#tagKeys
+      path: /2020-11-20/tags/{resourceArn}#tagKeys
+      operations:
+      - name: untagresource
+        method: DELETE
+        description: Amazon Lookout for Vision Untag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the model from which you want to remove tags.
+          required: true
+        - name: tagKeys
+          in: query
+          type: array
+          description: A list of the keys of the tags that you want to remove.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_LOOKOUT_FOR_VISION_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-lookout-for-vision-rest
+    port: 8080
+    description: REST adapter for Amazon Lookout for Vision. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/2020-11-20/projects
+      name: 2020-11-20-projects
+      description: REST surface for 2020-11-20-projects.
+      operations:
+      - method: POST
+        name: createproject
+        description: Amazon Lookout for Vision Create Project
+        call: amazon-lookout-for-vision.createproject
+        with:
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listprojects
+        description: Amazon Lookout for Vision List Projects
+        call: amazon-lookout-for-vision.listprojects
+        with:
+          nextToken: rest.nextToken
+          maxResults: rest.maxResults
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}
+      name: 2020-11-20-projects-projectname
+      description: REST surface for 2020-11-20-projects-projectName.
+      operations:
+      - method: DELETE
+        name: deleteproject
+        description: Amazon Lookout for Vision Delete Project
+        call: amazon-lookout-for-vision.deleteproject
+        with:
+          projectName: rest.projectName
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: describeproject
+        description: Amazon Lookout for Vision Describe Project
+        call: amazon-lookout-for-vision.describeproject
+        with:
+          projectName: rest.projectName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/datasets
+      name: 2020-11-20-projects-projectname-datasets
+      description: REST surface for 2020-11-20-projects-projectName-datasets.
+      operations:
+      - method: POST
+        name: createdataset
+        description: Amazon Lookout for Vision Create Dataset
+        call: amazon-lookout-for-vision.createdataset
+        with:
+          projectName: rest.projectName
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/datasets/{datasettype}
+      name: 2020-11-20-projects-projectname-datasets-datasettype
+      description: REST surface for 2020-11-20-projects-projectName-datasets-datasetType.
+      operations:
+      - method: DELETE
+        name: deletedataset
+        description: Amazon Lookout for Vision Delete Dataset
+        call: amazon-lookout-for-vision.deletedataset
+        with:
+          projectName: rest.projectName
+          datasetType: rest.datasetType
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: describedataset
+        description: Amazon Lookout for Vision Describe Dataset
+        call: amazon-lookout-for-vision.describedataset
+        with:
+          projectName: rest.projectName
+          datasetType: rest.datasetType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/datasets/{datasettype}/entries
+      name: 2020-11-20-projects-projectname-datasets-datasettype-entries
+      description: REST surface for 2020-11-20-projects-projectName-datasets-datasetType-entries.
+      operations:
+      - method: GET
+        name: listdatasetentries
+        description: Amazon Lookout for Vision List Dataset Entries
+        call: amazon-lookout-for-vision.listdatasetentries
+        with:
+          projectName: rest.projectName
+          datasetType: rest.datasetType
+          labeled: rest.labeled
+          anomalyClass: rest.anomalyClass
+          createdBefore: rest.createdBefore
+          createdAfter: rest.createdAfter
+          nextToken: rest.nextToken
+          maxResults: rest.maxResults
+          sourceRefContains: rest.sourceRefContains
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatedatasetentries
+        description: Amazon Lookout for Vision Update Dataset Entries
+        call: amazon-lookout-for-vision.updatedatasetentries
+        with:
+          projectName: rest.projectName
+          datasetType: rest.datasetType
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/modelpackagingjobs
+      name: 2020-11-20-projects-projectname-modelpackagingjobs
+      description: REST surface for 2020-11-20-projects-projectName-modelpackagingjobs.
+      operations:
+      - method: GET
+        name: listmodelpackagingjobs
+        description: Amazon Lookout for Vision List Model Packaging Jobs
+        call: amazon-lookout-for-vision.listmodelpackagingjobs
+        with:
+          projectName: rest.projectName
+          nextToken: rest.nextToken
+          maxResults: rest.maxResults
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: startmodelpackagingjob
+        description: Amazon Lookout for Vision Start Model Packaging Job
+        call: amazon-lookout-for-vision.startmodelpackagingjob
+        with:
+          projectName: rest.projectName
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/modelpackagingjobs/{jobname}
+      name: 2020-11-20-projects-projectname-modelpackagingjobs-jobname
+      description: REST surface for 2020-11-20-projects-projectName-modelpackagingjobs-jobName.
+      operations:
+      - method: GET
+        name: describemodelpackagingjob
+        description: Amazon Lookout for Vision Describe Model Packaging Job
+        call: amazon-lookout-for-vision.describemodelpackagingjob
+        with:
+          projectName: rest.projectName
+          jobName: rest.jobName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/models
+      name: 2020-11-20-projects-projectname-models
+      description: REST surface for 2020-11-20-projects-projectName-models.
+      operations:
+      - method: POST
+        name: createmodel
+        description: Amazon Lookout for Vision Create Model
+        call: amazon-lookout-for-vision.createmodel
+        with:
+          projectName: rest.projectName
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmodels
+        description: Amazon Lookout for Vision List Models
+        call: amazon-lookout-for-vision.listmodels
+        with:
+          projectName: rest.projectName
+          nextToken: rest.nextToken
+          maxResults: rest.maxResults
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/models/{modelversion}
+      name: 2020-11-20-projects-projectname-models-modelversion
+      description: REST surface for 2020-11-20-projects-projectName-models-modelVersion.
+      operations:
+      - method: DELETE
+        name: deletemodel
+        description: Amazon Lookout for Vision Delete Model
+        call: amazon-lookout-for-vision.deletemodel
+        with:
+          projectName: rest.projectName
+          modelVersion: rest.modelVersion
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: describemodel
+        description: Amazon Lookout for Vision Describe Model
+        call: amazon-lookout-for-vision.describemodel
+        with:
+          projectName: rest.projectName
+          modelVersion: rest.modelVersion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/models/{modelversion}/detect-content-type
+      name: 2020-11-20-projects-projectname-models-modelversion-detect-content-type
+      description: REST surface for 2020-11-20-projects-projectName-models-modelVersion-detect#Content-Type.
+      operations:
+      - method: POST
+        name: detectanomalies
+        description: Amazon Lookout for Vision Detect Anomalies
+        call: amazon-lookout-for-vision.detectanomalies
+        with:
+          projectName: rest.projectName
+          modelVersion: rest.modelVersion
+          Content-Type: rest.Content-Type
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/models/{modelversion}/start
+      name: 2020-11-20-projects-projectname-models-modelversion-start
+      description: REST surface for 2020-11-20-projects-projectName-models-modelVersion-start.
+      operations:
+      - method: POST
+        name: startmodel
+        description: Amazon Lookout for Vision Start Model
+        call: amazon-lookout-for-vision.startmodel
+        with:
+          projectName: rest.projectName
+          modelVersion: rest.modelVersion
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/projects/{projectname}/models/{modelversion}/stop
+      name: 2020-11-20-projects-projectname-models-modelversion-stop
+      description: REST surface for 2020-11-20-projects-projectName-models-modelVersion-stop.
+      operations:
+      - method: POST
+        name: stopmodel
+        description: Amazon Lookout for Vision Stop Model
+        call: amazon-lookout-for-vision.stopmodel
+        with:
+          projectName: rest.projectName
+          modelVersion: rest.modelVersion
+          X-Amzn-Client-Token: rest.X-Amzn-Client-Token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/tags/{resourcearn}
+      name: 2020-11-20-tags-resourcearn
+      description: REST surface for 2020-11-20-tags-resourceArn.
+      operations:
+      - method: GET
+        name: listtagsforresource
+        description: Amazon Lookout for Vision List Tags for Resource
+        call: amazon-lookout-for-vision.listtagsforresource
+        with:
+          resourceArn: rest.resourceArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: tagresource
+        description: Amazon Lookout for Vision Tag Resource
+        call: amazon-lookout-for-vision.tagresource
+        with:
+          resourceArn: rest.resourceArn
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2020-11-20/tags/resourcearn-tagkeys
+      name: 2020-11-20-tags-resourcearn-tagkeys
+      description: REST surface for 2020-11-20-tags-resourceArn}#tagKeys.
+      operations:
+      - method: DELETE
+        name: untagresource
+        description: Amazon Lookout for Vision Untag Resource
+        call: amazon-lookout-for-vision.untagresource
+        with:
+          resourceArn: rest.resourceArn
+          tagKeys: rest.tagKeys
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-lookout-for-vision-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Lookout for Vision. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: amazon-lookout-vision-create-project
+      description: Amazon Lookout for Vision Create Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.createproject
+      with:
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-list-projects
+      description: Amazon Lookout for Vision List Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.listprojects
+      with:
+        nextToken: tools.nextToken
+        maxResults: tools.maxResults
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-delete-project
+      description: Amazon Lookout for Vision Delete Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-lookout-for-vision.deleteproject
+      with:
+        projectName: tools.projectName
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-describe-project
+      description: Amazon Lookout for Vision Describe Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.describeproject
+      with:
+        projectName: tools.projectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-create-dataset
+      description: Amazon Lookout for Vision Create Dataset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.createdataset
+      with:
+        projectName: tools.projectName
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-delete-dataset
+      description: Amazon Lookout for Vision Delete Dataset
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-lookout-for-vision.deletedataset
+      with:
+        projectName: tools.projectName
+        datasetType: tools.datasetType
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-describe-dataset
+      description: Amazon Lookout for Vision Describe Dataset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.describedataset
+      with:
+        projectName: tools.projectName
+        datasetType: tools.datasetType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-list-dataset
+      description: Amazon Lookout for Vision List Dataset Entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.listdatasetentries
+      with:
+        projectName: tools.projectName
+        datasetType: tools.datasetType
+        labeled: tools.labeled
+        anomalyClass: tools.anomalyClass
+        createdBefore: tools.createdBefore
+        createdAfter: tools.createdAfter
+        nextToken: tools.nextToken
+        maxResults: tools.maxResults
+        sourceRefContains: tools.sourceRefContains
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-update-dataset
+      description: Amazon Lookout for Vision Update Dataset Entries
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.updatedatasetentries
+      with:
+        projectName: tools.projectName
+        datasetType: tools.datasetType
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-list-model
+      description: Amazon Lookout for Vision List Model Packaging Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.listmodelpackagingjobs
+      with:
+        projectName: tools.projectName
+        nextToken: tools.nextToken
+        maxResults: tools.maxResults
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-start-model
+      description: Amazon Lookout for Vision Start Model Packaging Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.startmodelpackagingjob
+      with:
+        projectName: tools.projectName
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-describe-model
+      description: Amazon Lookout for Vision Describe Model Packaging Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.describemodelpackagingjob
+      with:
+        projectName: tools.projectName
+        jobName: tools.jobName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-create-model
+      description: Amazon Lookout for Vision Create Model
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.createmodel
+      with:
+        projectName: tools.projectName
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-list-models
+      description: Amazon Lookout for Vision List Models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.listmodels
+      with:
+        projectName: tools.projectName
+        nextToken: tools.nextToken
+        maxResults: tools.maxResults
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-delete-model
+      description: Amazon Lookout for Vision Delete Model
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-lookout-for-vision.deletemodel
+      with:
+        projectName: tools.projectName
+        modelVersion: tools.modelVersion
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-describe-model-2
+      description: Amazon Lookout for Vision Describe Model
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.describemodel
+      with:
+        projectName: tools.projectName
+        modelVersion: tools.modelVersion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-detect-anomalies
+      description: Amazon Lookout for Vision Detect Anomalies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.detectanomalies
+      with:
+        projectName: tools.projectName
+        modelVersion: tools.modelVersion
+        Content-Type: tools.Content-Type
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-start-model-2
+      description: Amazon Lookout for Vision Start Model
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.startmodel
+      with:
+        projectName: tools.projectName
+        modelVersion: tools.modelVersion
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-stop-model
+      description: Amazon Lookout for Vision Stop Model
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.stopmodel
+      with:
+        projectName: tools.projectName
+        modelVersion: tools.modelVersion
+        X-Amzn-Client-Token: tools.X-Amzn-Client-Token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-list-tags
+      description: Amazon Lookout for Vision List Tags for Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lookout-for-vision.listtagsforresource
+      with:
+        resourceArn: tools.resourceArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-tag-resource
+      description: Amazon Lookout for Vision Tag Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lookout-for-vision.tagresource
+      with:
+        resourceArn: tools.resourceArn
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-lookout-vision-untag-resource
+      description: Amazon Lookout for Vision Untag Resource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-lookout-for-vision.untagresource
+      with:
+        resourceArn: tools.resourceArn
+        tagKeys: tools.tagKeys
+      outputParameters:
+      - type: object
+        mapping: $.
