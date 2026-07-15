@@ -50,6 +50,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/amazon-lookout-for-vision.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/amazon-lookout-for-vision-agentic-access.yml
 - type: TrustCenter
   url: security/amazon-lookout-for-vision-trust-center.yml
 - type: VulnerabilityDisclosure
