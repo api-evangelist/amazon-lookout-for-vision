@@ -5,7 +5,20 @@ description: Amazon Lookout for Vision is a machine learning service that spots 
   damaged products or issues before production issues arise. It supports projects, datasets, model training, and real-time
   anomaly detection.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-lookout-for-vision.png
 tags:
 - AWS
 - Computer Vision
@@ -18,23 +31,44 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: amazon-lookout-for-vision:amazon-lookout-for-vision-api
-  name: Amazon Lookout for Vision API
-  description: The Amazon Lookout for Vision API provides programmatic access to create and manage projects, datasets, models,
-    and anomaly detection jobs for visual quality inspection using computer vision. Supports 22 operations covering the full
-    model lifecycle from dataset management through real-time anomaly detection.
+- aid: amazon-lookout-for-vision:amazon-lookout-for-vision-projects-api
+  name: Amazon Lookout for Vision Projects API
+  description: The Projects API from Amazon Lookout for Vision — 12 operation(s) for projects.
   humanURL: https://aws.amazon.com/lookout-for-vision/
   baseURL: https://lookoutvision.amazonaws.com
   tags:
-  - Computer Vision
-  - Machine Learning
-  - Quality Inspection
-  - Anomaly Detection
+  - Projects
   properties:
+  - type: OpenAPI
+    url: openapi/amazon-lookout-for-vision-projects-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/lookout-for-vision/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/lookout-for-vision/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/lookout-for-vision/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-lookout-for-vision-anomaly-class-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-lookout-for-vision-anomaly-class-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-lookout-for-vision-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/amazon-lookout-for-vision.yaml
+- aid: amazon-lookout-for-vision:amazon-lookout-for-vision-tags-api
+  name: Amazon Lookout for Vision Tags API
+  description: The Tags API from Amazon Lookout for Vision — 2 operation(s) for tags.
+  humanURL: https://aws.amazon.com/lookout-for-vision/
+  baseURL: https://lookoutvision.amazonaws.com
+  tags:
+  - Tags
+  properties:
   - type: OpenAPI
-    url: openapi/amazon-lookout-for-vision-openapi-original.yaml
+    url: openapi/amazon-lookout-for-vision-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/Welcome.html
   - type: GettingStarted
     url: https://aws.amazon.com/lookout-for-vision/getting-started/
   - type: Pricing
@@ -50,6 +84,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/amazon-lookout-for-vision.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-lookout-for-vision/overview
 - type: AgenticAccess
   url: agentic-access/amazon-lookout-for-vision-agentic-access.yml
 - type: TrustCenter
