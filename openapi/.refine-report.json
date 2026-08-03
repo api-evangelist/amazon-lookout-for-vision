@@ -1,0 +1,16 @@
+{
+  "provider": "amazon-lookout-for-vision",
+  "sources": [
+    "amazon-lookout-for-vision-projects-api-openapi.yml",
+    "amazon-lookout-for-vision-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-lookout-for-vision-projects-api-openapi.yml",
+    "amazon-lookout-for-vision-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
