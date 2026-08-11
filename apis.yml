@@ -49,14 +49,8 @@ apis:
     url: https://aws.amazon.com/lookout-for-vision/pricing/
   - type: FAQ
     url: https://aws.amazon.com/lookout-for-vision/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-lookout-for-vision-anomaly-class-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-lookout-for-vision-anomaly-class-structure.json
   - type: JSONLD
     url: json-ld/amazon-lookout-for-vision-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-lookout-for-vision.yaml
 - aid: amazon-lookout-for-vision:amazon-lookout-for-vision-tags-api
   name: Amazon Lookout for Vision Tags API
   description: The Tags API from Amazon Lookout for Vision — 2 operation(s) for tags.
@@ -75,14 +69,8 @@ apis:
     url: https://aws.amazon.com/lookout-for-vision/pricing/
   - type: FAQ
     url: https://aws.amazon.com/lookout-for-vision/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-lookout-for-vision-anomaly-class-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-lookout-for-vision-anomaly-class-structure.json
   - type: JSONLD
     url: json-ld/amazon-lookout-for-vision-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-lookout-for-vision.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-lookout-for-vision/overview
