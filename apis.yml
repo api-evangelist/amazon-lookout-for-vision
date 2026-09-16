@@ -1,9 +1,9 @@
 aid: amazon-lookout-for-vision
 name: Amazon Lookout for Vision
-description: Amazon Lookout for Vision is a machine learning service that spots defects and anomalies in visual representations
-  using computer vision. With just a small sample of images, it builds a custom computer vision model to enable you to identify
-  damaged products or issues before production issues arise. It supports projects, datasets, model training, and real-time
-  anomaly detection.
+description: Amazon Lookout for Vision is a machine learning service that spots defects and anomalies
+  in visual representations using computer vision. With just a small sample of images, it builds a custom
+  computer vision model to enable you to identify damaged products or issues before production issues
+  arise. It supports projects, datasets, model training, and real-time anomaly detection.
 type: Index
 deliveryModel:
   model: saas
@@ -48,7 +48,7 @@ tags_raw:
 - Anomaly Detection
 url: https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: amazon-lookout-for-vision:amazon-lookout-for-vision-projects-api
@@ -94,6 +94,8 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-lookout-for-vision-context.jsonld
 common:
+- type: Website
+  url: https://amazon.com
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-lookout-for-vision/overview
 - type: AgenticAccess
@@ -137,9 +139,11 @@ common:
 - type: Features
   data:
   - name: Custom Computer Vision Models
-    description: Build custom visual inspection models with just a small sample of images, no ML expertise required.
+    description: Build custom visual inspection models with just a small sample of images, no ML expertise
+      required.
   - name: Real-Time Defect Detection
-    description: Run inference on images in real time to detect defects and anomalies on the production line.
+    description: Run inference on images in real time to detect defects and anomalies on the production
+      line.
   - name: Edge Deployment
     description: Package and deploy models to edge devices for local inference without cloud connectivity.
   - name: Dataset Management
@@ -149,8 +153,8 @@ common:
 - type: UseCases
   data:
   - name: Manufacturing Quality Control
-    description: Automate visual inspection of manufactured products to detect surface defects, assembly errors, and damaged
-      items.
+    description: Automate visual inspection of manufactured products to detect surface defects, assembly
+      errors, and damaged items.
   - name: Electronics Assembly Inspection
     description: Detect solder defects, missing components, and board damage in electronics manufacturing.
   - name: Food and Beverage Quality
