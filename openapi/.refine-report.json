@@ -1,8 +1,7 @@
 {
   "provider": "amazon-lookout-for-vision",
   "sources": [
-    "amazon-lookout-for-vision-projects-api-openapi.yml",
-    "amazon-lookout-for-vision-tags-api-openapi.yml"
+    "_original/amazon-lookout-for-vision-openapi-original.yaml"
   ],
   "outputs": [
     "amazon-lookout-for-vision-projects-api-openapi.yml",
@@ -12,7 +11,36 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-lookout-for-vision-openapi-original.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/datasets -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/models -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/models -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths DELETE /2020-11-20/projects/{projectName}/datasets/{datasetType} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/datasets/{datasetType} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths DELETE /2020-11-20/projects/{projectName}/models/{modelVersion} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/models/{modelVersion} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths DELETE /2020-11-20/projects/{projectName} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/modelpackagingjobs/{jobName} -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/models/{modelVersion}/detect#Content-Type -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/datasets/{datasetType}/entries -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths PATCH /2020-11-20/projects/{projectName}/datasets/{datasetType}/entries -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/projects/{projectName}/modelpackagingjobs -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/modelpackagingjobs -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths GET /2020-11-20/tags/{resourceArn} -> Tags",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/tags/{resourceArn} -> Tags",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/models/{modelVersion}/start -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths POST /2020-11-20/projects/{projectName}/models/{modelVersion}/stop -> Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: tagged paths DELETE /2020-11-20/tags/{resourceArn}#tagKeys -> Tags",
+    "amazon-lookout-for-vision-openapi-original.yaml: declared missing tag: Projects",
+    "amazon-lookout-for-vision-openapi-original.yaml: declared missing tag: Tags",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-lookout-for-vision-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-lookout-for-vision-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
