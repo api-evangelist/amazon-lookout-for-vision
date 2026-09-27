@@ -350,23 +350,30 @@ paths:
       - Tags
 components:
   schemas:
-    TagKey:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 1
-      maxLength: 128
+    ConflictException: {}
+    InternalServerException: {}
+    ValidationException: {}
+    ServiceQuotaExceededException: {}
+    ListTagsForResourceResponse:
+      type: object
+      properties:
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagList'
+          - description: A map of tag keys and values attached to the specified model.
     TagResourceResponse:
       type: object
       properties: {}
+    ThrottlingException: {}
     UntagResourceResponse:
       type: object
       properties: {}
-    ResourceNotFoundException: {}
     TagValue:
       type: string
       pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
       minLength: 0
       maxLength: 256
+    ResourceNotFoundException: {}
     Tag:
       type: object
       required:
@@ -382,28 +389,21 @@ components:
           - $ref: '#/components/schemas/TagValue'
           - description: The value of the tag that is attached to the specified model.
       description: A key and value pair that is attached to the specified Amazon Lookout for Vision model.
-    ServiceQuotaExceededException: {}
-    ConflictException: {}
-    ListTagsForResourceResponse:
-      type: object
-      properties:
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagList'
-          - description: A map of tag keys and values attached to the specified model.
-    ThrottlingException: {}
-    InternalServerException: {}
-    ValidationException: {}
-    AccessDeniedException: {}
     TagList:
       type: array
       items:
         $ref: '#/components/schemas/Tag'
       minItems: 0
       maxItems: 200
+    TagKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    AccessDeniedException: {}
   parameters:
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -414,14 +414,14 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
       in: header
       schema:
         type: string
@@ -432,8 +432,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
