@@ -2006,95 +2006,115 @@ paths:
       - Projects
 components:
   schemas:
-    Float:
-      type: number
-      format: float
-    ModelArn:
+    TargetDevice:
       type: string
-    AnomalyList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Anomaly'
-    ModelDescriptionMessage:
+      enum:
+      - jetson_xavier
+    S3ObjectVersion:
       type: string
-      pattern: '[0-9A-Za-z\.\-_]*'
+      pattern: .*
       minLength: 1
-      maxLength: 500
-    ImageSource:
+      maxLength: 1024
+    ProjectName:
+      type: string
+      pattern: '[a-zA-Z0-9][a-zA-Z0-9_\-]*'
+      minLength: 1
+      maxLength: 255
+    StartModelResponse:
       type: object
       properties:
-        Type:
+        Status:
           allOf:
-          - $ref: '#/components/schemas/ImageSourceType'
-          - description: The type of the image.
-      description: The source for an image.
+          - $ref: '#/components/schemas/ModelHostingStatus'
+          - description: The current running status of the model.
+    ModelStatusMessage:
+      type: string
+    DatasetType:
+      type: string
+      pattern: train|test
+      minLength: 1
+      maxLength: 10
+    ModelPackagingJobName:
+      type: string
+      pattern: '[a-zA-Z0-9-]+'
+      minLength: 1
+      maxLength: 64
     DateTime:
       type: string
       format: date-time
-    DatasetEntryList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DatasetEntry'
-    DatasetMetadataList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DatasetMetadata'
+    ModelHostingStatus:
+      type: string
+      enum:
+      - STARTING_HOSTING
+      - HOSTED
+      - HOSTING_FAILED
+      - STOPPING_HOSTING
+      - SYSTEM_UPDATING
+    ModelPerformance:
+      type: object
+      properties:
+        F1Score:
+          allOf:
+          - $ref: '#/components/schemas/Float'
+          - description: The overall F1 score metric for the trained model.
+        Recall:
+          allOf:
+          - $ref: '#/components/schemas/Float'
+          - description: 'The overall recall metric value for the trained model. '
+        Precision:
+          allOf:
+          - $ref: '#/components/schemas/Float'
+          - description: The overall precision metric value for the trained model.
+      description: 'Information about the evaluation performance of a trained model. '
+    TagKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    ProjectMetadata:
+      type: object
+      properties:
+        ProjectArn:
+          allOf:
+          - $ref: '#/components/schemas/ProjectArn'
+          - description: The Amazon Resource Name (ARN) of the project.
+        ProjectName:
+          allOf:
+          - $ref: '#/components/schemas/ProjectName'
+          - description: The name of the project.
+        CreationTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: 'The unix timestamp for the date and time that the project was created. '
+      description: Metadata about an Amazon Lookout for Vision project.
+    CreateModelResponse:
+      type: object
+      properties:
+        ModelMetadata:
+          allOf:
+          - $ref: '#/components/schemas/ModelMetadata'
+          - description: The response from a call to <code>CreateModel</code>.
+    ValidationException: {}
+    ModelPackagingConfiguration:
+      type: object
+      required:
+      - Greengrass
+      properties:
+        Greengrass:
+          allOf:
+          - $ref: '#/components/schemas/GreengrassConfiguration'
+          - description: ' Configuration information for the AWS IoT Greengrass component in a model packaging job. '
+      description: ' Configuration information for a Amazon Lookout for Vision model packaging job. For more information, see <a>StartModelPackagingJob</a>. '
     ComponentVersion:
       type: string
       pattern: ^([0-9]{1,6})\.([0-9]{1,6})\.([0-9]{1,6})$
       minLength: 1
       maxLength: 64
-    DetectAnomalyResult:
-      type: object
-      properties:
-        Source:
-          allOf:
-          - $ref: '#/components/schemas/ImageSource'
-          - description: The source of the image that was analyzed. <code>direct</code> means that the images was supplied from the local computer. No other values are supported.
-        IsAnomalous:
-          allOf:
-          - $ref: '#/components/schemas/Boolean'
-          - description: True if Amazon Lookout for Vision classifies the image as containing an anomaly, otherwise false.
-        Confidence:
-          allOf:
-          - $ref: '#/components/schemas/Float'
-          - description: The confidence that Lookout for Vision has in the accuracy of the classification in <code>IsAnomalous</code>.
-        Anomalies:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyList'
-          - description: <p>If the model is an image segmentation model, <code>Anomalies</code> contains a list of anomaly types found in the image. There is one entry for each type of anomaly found (even if multiple instances of an anomaly type exist on the image). The first element in the list is always an anomaly type representing the image background ('background') and shouldn't be considered an anomaly. Amazon Lookout for Vision automatically add the background anomaly type to the response, and you don't need to declare a background anomaly type in your dataset.</p> <p>If the list has one entry ('background'), no anomalies were found on the image.</p> <p/> <p>An image classification model doesn't return an <code>Anomalies</code> list. </p>
-        AnomalyMask:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyMask'
-          - description: <p>If the model is an image segmentation model, <code>AnomalyMask</code> contains pixel masks that covers all anomaly types found on the image. Each anomaly type has a different mask color. To map a color to an anomaly type, see the <code>color</code> field of the <a>PixelAnomaly</a> object.</p> <p>An image classification model doesn't return an <code>Anomalies</code> list. </p>
-      description: The prediction results from a call to <a>DetectAnomalies</a>. <code>DetectAnomalyResult</code> includes classification information for the prediction (<code>IsAnomalous</code> and <code>Confidence</code>). If the model you use is an image segementation model, <code>DetectAnomalyResult</code> also includes segmentation information (<code>Anomalies</code> and <code>AnomalyMask</code>). Classification information is calculated separately from segmentation information and you shouldn't assume a relationship between them.
-    TagValue:
+    S3ObjectKey:
       type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 0
-      maxLength: 256
-    StartModelPackagingJobResponse:
-      type: object
-      properties:
-        JobName:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingJobName'
-          - description: 'The job name for the model packaging job. If you don''t supply a job name in the <code>JobName</code> input parameter, the service creates a job name for you. '
-    Tag:
-      type: object
-      required:
-      - Key
-      - Value
-      properties:
-        Key:
-          allOf:
-          - $ref: '#/components/schemas/TagKey'
-          - description: The key of the tag that is attached to the specified model.
-        Value:
-          allOf:
-          - $ref: '#/components/schemas/TagValue'
-          - description: The value of the tag that is attached to the specified model.
-      description: A key and value pair that is attached to the specified Amazon Lookout for Vision model.
+      pattern: ^([a-zA-Z0-9!_.*'()-][/a-zA-Z0-9!_.*'()-]*)?$
+      minLength: 1
+      maxLength: 1024
     Anomaly:
       type: object
       properties:
@@ -2107,112 +2127,182 @@ components:
           - $ref: '#/components/schemas/PixelAnomaly'
           - description: Information about the pixel mask that covers an anomaly type.
       description: Information about an anomaly type found on an image by an image segmentation model. For more information, see <a>DetectAnomalies</a>.
-    AccessDeniedException: {}
-    ModelPackagingJobName:
-      type: string
-      pattern: '[a-zA-Z0-9-]+'
-      minLength: 1
-      maxLength: 64
-    TargetPlatformAccelerator:
-      type: string
-      enum:
-      - NVIDIA
-    ProjectMetadataList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProjectMetadata'
-    GreengrassConfiguration:
+    TargetPlatform:
       type: object
       required:
-      - S3OutputLocation
-      - ComponentName
+      - Os
+      - Arch
       properties:
-        CompilerOptions:
+        Os:
           allOf:
-          - $ref: '#/components/schemas/CompilerOptions'
-          - description: <p>Additional compiler options for the Greengrass component. Currently, only NVIDIA Graphics Processing Units (GPU) and CPU accelerators are supported. If you specify <code>TargetDevice</code>, don't specify <code>CompilerOptions</code>.</p> <p>For more information, see <i>Compiler options</i> in the Amazon Lookout for Vision Developer Guide. </p>
-        TargetDevice:
+          - $ref: '#/components/schemas/TargetPlatformOs'
+          - description: 'The target operating system for the model. Linux is the only operating system that is currently supported. '
+        Arch:
           allOf:
-          - $ref: '#/components/schemas/TargetDevice'
-          - description: 'The target device for the model. Currently the only supported value is <code>jetson_xavier</code>. If you specify <code>TargetDevice</code>, you can''t specify <code>TargetPlatform</code>. '
-        TargetPlatform:
+          - $ref: '#/components/schemas/TargetPlatformArch'
+          - description: 'The target architecture for the model. The currently supported architectures are X86_64 (64-bit version of the x86 instruction set) and ARM_64 (ARMv8 64-bit CPU). '
+        Accelerator:
           allOf:
-          - $ref: '#/components/schemas/TargetPlatform'
-          - description: 'The target platform for the model. If you specify <code>TargetPlatform</code>, you can''t specify <code>TargetDevice</code>. '
-        S3OutputLocation:
-          allOf:
-          - $ref: '#/components/schemas/S3Location'
-          - description: ' An S3 location in which Lookout for Vision stores the component artifacts. '
-        ComponentName:
-          allOf:
-          - $ref: '#/components/schemas/ComponentName'
-          - description: ' A name for the AWS IoT Greengrass component. '
-        ComponentVersion:
-          allOf:
-          - $ref: '#/components/schemas/ComponentVersion'
-          - description: 'A Version for the AWS IoT Greengrass component. If you don''t provide a value, a default value of <code> <i>Model Version</i>.0.0</code> is used. '
-        ComponentDescription:
-          allOf:
-          - $ref: '#/components/schemas/ComponentDescription'
-          - description: ' A description for the AWS IoT Greengrass component. '
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagList'
-          - description: ' A set of tags (key-value pairs) that you want to attach to the AWS IoT Greengrass component. '
-      description: <p>Configuration information for the AWS IoT Greengrass component created in a model packaging job. For more information, see <a>StartModelPackagingJob</a>. </p> <note> <p>You can't specify a component with the same <code>ComponentName</code> and <code>Componentversion</code> as an existing component with the same component name and component version.</p> </note>
-    ModelVersion:
+          - $ref: '#/components/schemas/TargetPlatformAccelerator'
+          - description: '<p>The target accelerator for the model. Currently, Amazon Lookout for Vision only supports NVIDIA (Nvidia graphics processing unit) and CPU accelerators. If you specify NVIDIA as an accelerator, you must also specify the <code>gpu-code</code>, <code>trt-ver</code>, and <code>cuda-ver</code> compiler options. If you don''t specify an accelerator, Lookout for Vision uses the CPU for compilation and we highly recommend that you use the <a>GreengrassConfiguration$CompilerOptions</a> field. For example, you can use the following compiler options for CPU: </p> <ul> <li> <p> <code>mcpu</code>: CPU micro-architecture. For example, <code>{''mcpu'': ''skylake-avx512''}</code> </p> </li> <li> <p> <code>mattr</code>: CPU flags. For example, <code>{''mattr'': [''+neon'', ''+vfpv4'']}</code> </p> </li> </ul>'
+      description: The platform on which a model runs on an AWS IoT Greengrass core device.
+    KmsKeyId:
       type: string
-      pattern: ([1-9][0-9]*|latest)
+      pattern: ^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$
       minLength: 1
-      maxLength: 10
-    Boolean:
-      type: boolean
-    PaginationToken:
-      type: string
-      pattern: ^[a-zA-Z0-9\/\+\=]{0,2048}$
       maxLength: 2048
-    DatasetStatus:
+    DatasetEntryList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DatasetEntry'
+    ModelStatus:
       type: string
       enum:
-      - CREATE_IN_PROGRESS
-      - CREATE_COMPLETE
-      - CREATE_FAILED
-      - UPDATE_IN_PROGRESS
-      - UPDATE_COMPLETE
-      - UPDATE_FAILED_ROLLBACK_IN_PROGRESS
-      - UPDATE_FAILED_ROLLBACK_COMPLETE
-      - DELETE_IN_PROGRESS
-      - DELETE_COMPLETE
-      - DELETE_FAILED
-    ModelPackagingJobStatus:
-      type: string
-      enum:
-      - CREATED
-      - RUNNING
-      - SUCCEEDED
-      - FAILED
-    ModelPackagingStatusMessage:
-      type: string
-    CreateProjectResponse:
+      - TRAINING
+      - TRAINED
+      - TRAINING_FAILED
+      - STARTING_HOSTING
+      - HOSTED
+      - HOSTING_FAILED
+      - STOPPING_HOSTING
+      - SYSTEM_UPDATING
+      - DELETING
+    InferenceUnits:
+      type: integer
+      minimum: 1
+    DetectAnomaliesResponse:
       type: object
       properties:
-        ProjectMetadata:
+        DetectAnomalyResult:
           allOf:
-          - $ref: '#/components/schemas/ProjectMetadata'
-          - description: Information about the project.
-    DatasetType:
-      type: string
-      pattern: train|test
-      minLength: 1
-      maxLength: 10
-    S3ObjectVersion:
+          - $ref: '#/components/schemas/DetectAnomalyResult'
+          - description: The results of the <code>DetectAnomalies</code> operation.
+    CompilerOptions:
       type: string
       pattern: .*
-      minLength: 1
+      minLength: 3
       maxLength: 1024
-    ComponentVersionArn:
+    ModelPackagingOutputDetails:
+      type: object
+      properties:
+        Greengrass:
+          allOf:
+          - $ref: '#/components/schemas/GreengrassOutputDetails'
+          - description: ' Information about the AWS IoT Greengrass component in a model packaging job. '
+      description: ' Information about the output from a model packaging job. '
+    DeleteDatasetResponse:
+      type: object
+      properties: {}
+    ListModelPackagingJobsResponse:
+      type: object
+      properties:
+        ModelPackagingJobs:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingJobsList'
+          - description: ' A list of the model packaging jobs created for the specified Amazon Lookout for Vision project. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: 'If the previous response was incomplete (because there is more results to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. '
+    StopModelResponse:
+      type: object
+      properties:
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/ModelHostingStatus'
+          - description: The status of the model.
+    ProjectArn:
       type: string
-      pattern: arn:[^:]*:greengrass:[^:]*:aws:components:[^:]+
+    DatasetStatusMessage:
+      type: string
+    DatasetGroundTruthManifest:
+      type: object
+      properties:
+        S3Object:
+          allOf:
+          - $ref: '#/components/schemas/InputS3Object'
+          - description: The S3 bucket location for the manifest file.
+      description: Location information about a manifest file. You can use a manifest file to create a dataset.
+    DatasetDescription:
+      type: object
+      properties:
+        ProjectName:
+          allOf:
+          - $ref: '#/components/schemas/ProjectName'
+          - description: The name of the project that contains the dataset.
+        DatasetType:
+          allOf:
+          - $ref: '#/components/schemas/DatasetType'
+          - description: The type of the dataset. The value <code>train</code> represents a training dataset or single dataset project. The value <code>test</code> represents a test dataset.
+        CreationTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: The Unix timestamp for the time and date that the dataset was created.
+        LastUpdatedTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: The Unix timestamp for the date and time that the dataset was last updated.
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/DatasetStatus'
+          - description: The status of the dataset.
+        StatusMessage:
+          allOf:
+          - $ref: '#/components/schemas/DatasetStatusMessage'
+          - description: 'The status message for the dataset. '
+        ImageStats:
+          allOf:
+          - $ref: '#/components/schemas/DatasetImageStats'
+          - description: Statistics about the images in a dataset.
+      description: The description for a dataset. For more information, see <a>DescribeDataset</a>.
+    S3KeyPrefix:
+      type: string
+      pattern: ^([a-zA-Z0-9!_.*'()-][/a-zA-Z0-9!_.*'()-]*)?$
+      maxLength: 1024
+    ListDatasetEntriesResponse:
+      type: object
+      properties:
+        DatasetEntries:
+          allOf:
+          - $ref: '#/components/schemas/DatasetEntryList'
+          - description: A list of the entries (JSON Lines) within the dataset.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set ofdataset entries.
+    DescribeModelResponse:
+      type: object
+      properties:
+        ModelDescription:
+          allOf:
+          - $ref: '#/components/schemas/ModelDescription'
+          - description: Contains the description of the model.
+    StartModelPackagingJobResponse:
+      type: object
+      properties:
+        JobName:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingJobName'
+          - description: 'The job name for the model packaging job. If you don''t supply a job name in the <code>JobName</code> input parameter, the service creates a job name for you. '
+    TagValue:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 0
+      maxLength: 256
+    ModelPackagingJobDescription:
+      type: string
+      pattern: '[a-zA-Z0-9-_. ()'':,;?]+'
+      minLength: 1
+      maxLength: 256
+    DatasetEntry:
+      type: string
+      pattern: ^\{.*\}$
+      minLength: 2
+      maxLength: 8192
+    TargetPlatformOs:
+      type: string
+      enum:
+      - LINUX
     DatasetImageStats:
       type: object
       properties:
@@ -2233,55 +2323,109 @@ components:
           - $ref: '#/components/schemas/Integer'
           - description: the total number of images labeled as an anomaly.
       description: Statistics about the images in a dataset.
-    ResourceNotFoundException: {}
-    S3ObjectKey:
-      type: string
-      pattern: ^([a-zA-Z0-9!_.*'()-][/a-zA-Z0-9!_.*'()-]*)?$
-      minLength: 1
-      maxLength: 1024
-    Color:
-      type: string
-      pattern: \#[a-zA-Z0-9]{6}
-      minLength: 7
-      maxLength: 7
-    AnomalyName:
-      type: string
-      pattern: '[a-zA-Z0-9]*'
-      minLength: 1
-      maxLength: 256
+    S3Location:
+      type: object
+      required:
+      - Bucket
+      properties:
+        Bucket:
+          allOf:
+          - $ref: '#/components/schemas/S3BucketName'
+          - description: The S3 bucket that contains the training or model packaging job output. If you are training a model, the bucket must in your AWS account. If you use an S3 bucket for a model packaging job, the S3 bucket must be in the same AWS Region and AWS account in which you use AWS IoT Greengrass.
+        Prefix:
+          allOf:
+          - $ref: '#/components/schemas/S3KeyPrefix'
+          - description: The path of the folder, within the S3 bucket, that contains the output.
+      description: Information about the location of training output or the output of a model packaging job.
     TagList:
       type: array
       items:
         $ref: '#/components/schemas/Tag'
       minItems: 0
       maxItems: 200
-    ListProjectsResponse:
+    Boolean:
+      type: boolean
+    DescribeDatasetResponse:
       type: object
       properties:
-        Projects:
+        DatasetDescription:
           allOf:
-          - $ref: '#/components/schemas/ProjectMetadataList'
-          - description: A list of projects in your AWS account.
-        NextToken:
+          - $ref: '#/components/schemas/DatasetDescription'
+          - description: 'The description of the requested dataset. '
+    ThrottlingException: {}
+    CreateDatasetResponse:
+      type: object
+      properties:
+        DatasetMetadata:
           allOf:
-          - $ref: '#/components/schemas/PaginationToken'
-          - description: If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of projects.
-    ModelStatus:
+          - $ref: '#/components/schemas/DatasetMetadata'
+          - description: Information about the dataset.
+    ModelPackagingJobMetadata:
+      type: object
+      properties:
+        JobName:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingJobName'
+          - description: ' The name of the model packaging job. '
+        ProjectName:
+          allOf:
+          - $ref: '#/components/schemas/ProjectName'
+          - description: ' The project that contains the model that is in the model package. '
+        ModelVersion:
+          allOf:
+          - $ref: '#/components/schemas/ModelVersion'
+          - description: ' The version of the model that is in the model package. '
+        ModelPackagingJobDescription:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingJobDescription'
+          - description: ' The description for the model packaging job. '
+        ModelPackagingMethod:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingMethod'
+          - description: ' The AWS service used to package the job. Currently Lookout for Vision can package jobs with AWS IoT Greengrass. '
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingJobStatus'
+          - description: 'The status of the model packaging job. '
+        StatusMessage:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingStatusMessage'
+          - description: 'The status message for the model packaging job. '
+        CreationTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: The Unix timestamp for the time and date that the model packaging job was created.
+        LastUpdatedTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: The Unix timestamp for the time and date that the model packaging job was last updated.
+      description: ' Metadata for a model packaging job. For more information, see <a>ListModelPackagingJobs</a>. '
+    ComponentVersionArn:
       type: string
-      enum:
-      - TRAINING
-      - TRAINED
-      - TRAINING_FAILED
-      - STARTING_HOSTING
-      - HOSTED
-      - HOSTING_FAILED
-      - STOPPING_HOSTING
-      - SYSTEM_UPDATING
-      - DELETING
-    ModelMetadataList:
+      pattern: arn:[^:]*:greengrass:[^:]*:aws:components:[^:]+
+    ComponentDescription:
+      type: string
+      pattern: '[a-zA-Z0-9-_. ()'':,;?]+'
+      minLength: 1
+      maxLength: 256
+    ConflictException: {}
+    AnomalyMask:
+      type: string
+      minLength: 1
+      maxLength: 5242880
+    DatasetMetadataList:
       type: array
       items:
-        $ref: '#/components/schemas/ModelMetadata'
+        $ref: '#/components/schemas/DatasetMetadata'
+    PaginationToken:
+      type: string
+      pattern: ^[a-zA-Z0-9\/\+\=]{0,2048}$
+      maxLength: 2048
+    ModelPackagingMethod:
+      type: string
+      pattern: ^[a-zA-Z0-9]+
+      minLength: 1
+      maxLength: 32
     ModelPackagingDescription:
       type: object
       properties:
@@ -2330,123 +2474,11 @@ components:
           - $ref: '#/components/schemas/DateTime'
           - description: ' The Unix timestamp for the time and date that the model packaging job was last updated. '
       description: ' Information about a model packaging job. For more information, see <a>DescribeModelPackagingJob</a>. '
-    KmsKeyId:
+    TargetPlatformArch:
       type: string
-      pattern: ^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$
-      minLength: 1
-      maxLength: 2048
-    DescribeProjectResponse:
-      type: object
-      properties:
-        ProjectDescription:
-          allOf:
-          - $ref: '#/components/schemas/ProjectDescription'
-          - description: The description of the project.
-    ConflictException: {}
-    ListModelsResponse:
-      type: object
-      properties:
-        Models:
-          allOf:
-          - $ref: '#/components/schemas/ModelMetadataList'
-          - description: 'A list of model versions in the specified project. '
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/PaginationToken'
-          - description: 'If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of models. '
-    ListDatasetEntriesResponse:
-      type: object
-      properties:
-        DatasetEntries:
-          allOf:
-          - $ref: '#/components/schemas/DatasetEntryList'
-          - description: A list of the entries (JSON Lines) within the dataset.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/PaginationToken'
-          - description: If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set ofdataset entries.
-    InputS3Object:
-      type: object
-      required:
-      - Bucket
-      - Key
-      properties:
-        Bucket:
-          allOf:
-          - $ref: '#/components/schemas/S3BucketName'
-          - description: The Amazon S3 bucket that contains the manifest.
-        Key:
-          allOf:
-          - $ref: '#/components/schemas/S3ObjectKey'
-          - description: The name and location of the manifest file withiin the bucket.
-        VersionId:
-          allOf:
-          - $ref: '#/components/schemas/S3ObjectVersion'
-          - description: The version ID of the bucket.
-      description: 'Amazon S3 Location information for an input manifest file. '
-    S3BucketName:
-      type: string
-      pattern: '[0-9A-Za-z\.\-_]*'
-      minLength: 3
-      maxLength: 63
-    ModelPackagingJobDescription:
-      type: string
-      pattern: '[a-zA-Z0-9-_. ()'':,;?]+'
-      minLength: 1
-      maxLength: 256
-    AnomalyMask:
-      type: string
-      minLength: 1
-      maxLength: 5242880
-    DescribeModelPackagingJobResponse:
-      type: object
-      properties:
-        ModelPackagingDescription:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingDescription'
-          - description: 'The description of the model packaging job. '
-    OutputS3Object:
-      type: object
-      required:
-      - Bucket
-      - Key
-      properties:
-        Bucket:
-          allOf:
-          - $ref: '#/components/schemas/S3BucketName'
-          - description: The bucket that contains the training output.
-        Key:
-          allOf:
-          - $ref: '#/components/schemas/S3ObjectKey'
-          - description: The location of the training output in the bucket.
-      description: The S3 location where Amazon Lookout for Vision saves training output.
-    ValidationException: {}
-    DatasetEntry:
-      type: string
-      pattern: ^\{.*\}$
-      minLength: 2
-      maxLength: 8192
-    ComponentDescription:
-      type: string
-      pattern: '[a-zA-Z0-9-_. ()'':,;?]+'
-      minLength: 1
-      maxLength: 256
-    ModelPackagingOutputDetails:
-      type: object
-      properties:
-        Greengrass:
-          allOf:
-          - $ref: '#/components/schemas/GreengrassOutputDetails'
-          - description: ' Information about the AWS IoT Greengrass component in a model packaging job. '
-      description: ' Information about the output from a model packaging job. '
-    ThrottlingException: {}
-    DeleteModelResponse:
-      type: object
-      properties:
-        ModelArn:
-          allOf:
-          - $ref: '#/components/schemas/ModelArn'
-          - description: The Amazon Resource Name (ARN) of the model that was deleted.
+      enum:
+      - ARM64
+      - X86_64
     ModelMetadata:
       type: object
       properties:
@@ -2479,23 +2511,19 @@ components:
           - $ref: '#/components/schemas/ModelPerformance'
           - description: Performance metrics for the model. Not available until training has successfully completed.
       description: Describes an Amazon Lookout for Vision model.
-    ModelHostingStatus:
-      type: string
-      enum:
-      - STARTING_HOSTING
-      - HOSTED
-      - HOSTING_FAILED
-      - STOPPING_HOSTING
-      - SYSTEM_UPDATING
-    DetectAnomaliesResponse:
+    ImageSource:
       type: object
       properties:
-        DetectAnomalyResult:
+        Type:
           allOf:
-          - $ref: '#/components/schemas/DetectAnomalyResult'
-          - description: The results of the <code>DetectAnomalies</code> operation.
-    DatasetStatusMessage:
+          - $ref: '#/components/schemas/ImageSourceType'
+          - description: The type of the image.
+      description: The source for an image.
+    ComponentName:
       type: string
+      pattern: '[a-zA-Z0-9-_.]+'
+      minLength: 1
+      maxLength: 128
     ProjectDescription:
       type: object
       properties:
@@ -2516,62 +2544,67 @@ components:
           - $ref: '#/components/schemas/DatasetMetadataList'
           - description: A list of datasets in the project.
       description: Describe an Amazon Lookout for Vision project. For more information, see <a>DescribeProject</a>.
-    S3KeyPrefix:
+    TargetPlatformAccelerator:
       type: string
-      pattern: ^([a-zA-Z0-9!_.*'()-][/a-zA-Z0-9!_.*'()-]*)?$
-      maxLength: 1024
-    InferenceUnits:
-      type: integer
-      minimum: 1
-    DatasetDescription:
+      enum:
+      - NVIDIA
+    CreateProjectResponse:
       type: object
       properties:
-        ProjectName:
+        ProjectMetadata:
           allOf:
-          - $ref: '#/components/schemas/ProjectName'
-          - description: The name of the project that contains the dataset.
-        DatasetType:
-          allOf:
-          - $ref: '#/components/schemas/DatasetType'
-          - description: The type of the dataset. The value <code>train</code> represents a training dataset or single dataset project. The value <code>test</code> represents a test dataset.
-        CreationTimestamp:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: The Unix timestamp for the time and date that the dataset was created.
-        LastUpdatedTimestamp:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: The Unix timestamp for the date and time that the dataset was last updated.
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/DatasetStatus'
-          - description: The status of the dataset.
-        StatusMessage:
-          allOf:
-          - $ref: '#/components/schemas/DatasetStatusMessage'
-          - description: 'The status message for the dataset. '
-        ImageStats:
-          allOf:
-          - $ref: '#/components/schemas/DatasetImageStats'
-          - description: Statistics about the images in a dataset.
-      description: The description for a dataset. For more information, see <a>DescribeDataset</a>.
-    DeleteProjectResponse:
+          - $ref: '#/components/schemas/ProjectMetadata'
+          - description: Information about the project.
+    ModelVersion:
+      type: string
+      pattern: ([1-9][0-9]*|latest)
+      minLength: 1
+      maxLength: 10
+    AnomalyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Anomaly'
+    GreengrassOutputDetails:
       type: object
       properties:
-        ProjectArn:
+        ComponentVersionArn:
           allOf:
-          - $ref: '#/components/schemas/ProjectArn'
-          - description: The Amazon Resource Name (ARN) of the project that was deleted.
-    ModelPackagingConfiguration:
+          - $ref: '#/components/schemas/ComponentVersionArn'
+          - description: ' The Amazon Resource Name (ARN) of the component. '
+        ComponentName:
+          allOf:
+          - $ref: '#/components/schemas/ComponentName'
+          - description: ' The name of the component. '
+        ComponentVersion:
+          allOf:
+          - $ref: '#/components/schemas/ComponentVersion'
+          - description: ' The version of the component. '
+      description: 'Information about the AWS IoT Greengrass component created by a model packaging job. '
+    ProjectMetadataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProjectMetadata'
+    ModelDescriptionMessage:
+      type: string
+      pattern: '[0-9A-Za-z\.\-_]*'
+      minLength: 1
+      maxLength: 500
+    OutputS3Object:
       type: object
       required:
-      - Greengrass
+      - Bucket
+      - Key
       properties:
-        Greengrass:
+        Bucket:
           allOf:
-          - $ref: '#/components/schemas/GreengrassConfiguration'
-          - description: ' Configuration information for the AWS IoT Greengrass component in a model packaging job. '
-      description: ' Configuration information for a Amazon Lookout for Vision model packaging job. For more information, see <a>StartModelPackagingJob</a>. '
+          - $ref: '#/components/schemas/S3BucketName'
+          - description: The bucket that contains the training output.
+        Key:
+          allOf:
+          - $ref: '#/components/schemas/S3ObjectKey'
+          - description: The location of the training output in the bucket.
+      description: The S3 location where Amazon Lookout for Vision saves training output.
+    AccessDeniedException: {}
     DatasetMetadata:
       type: object
       properties:
@@ -2592,226 +2625,20 @@ components:
           - $ref: '#/components/schemas/DatasetStatusMessage'
           - description: The status message for the dataset.
       description: Summary information for an Amazon Lookout for Vision dataset. For more information, see <a>DescribeDataset</a> and <a>ProjectDescription</a>.
-    TargetDevice:
+    DeleteModelResponse:
+      type: object
+      properties:
+        ModelArn:
+          allOf:
+          - $ref: '#/components/schemas/ModelArn'
+          - description: The Amazon Resource Name (ARN) of the model that was deleted.
+    ModelPackagingJobStatus:
       type: string
       enum:
-      - jetson_xavier
-    CreateDatasetResponse:
-      type: object
-      properties:
-        DatasetMetadata:
-          allOf:
-          - $ref: '#/components/schemas/DatasetMetadata'
-          - description: Information about the dataset.
-    ModelStatusMessage:
-      type: string
-    InternalServerException: {}
-    CreateModelResponse:
-      type: object
-      properties:
-        ModelMetadata:
-          allOf:
-          - $ref: '#/components/schemas/ModelMetadata'
-          - description: The response from a call to <code>CreateModel</code>.
-    CompilerOptions:
-      type: string
-      pattern: .*
-      minLength: 3
-      maxLength: 1024
-    ProjectName:
-      type: string
-      pattern: '[a-zA-Z0-9][a-zA-Z0-9_\-]*'
-      minLength: 1
-      maxLength: 255
-    ServiceQuotaExceededException: {}
-    ModelPackagingJobsList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ModelPackagingJobMetadata'
-    Integer:
-      type: integer
-    ProjectMetadata:
-      type: object
-      properties:
-        ProjectArn:
-          allOf:
-          - $ref: '#/components/schemas/ProjectArn'
-          - description: The Amazon Resource Name (ARN) of the project.
-        ProjectName:
-          allOf:
-          - $ref: '#/components/schemas/ProjectName'
-          - description: The name of the project.
-        CreationTimestamp:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: 'The unix timestamp for the date and time that the project was created. '
-      description: Metadata about an Amazon Lookout for Vision project.
-    StopModelResponse:
-      type: object
-      properties:
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/ModelHostingStatus'
-          - description: The status of the model.
-    DescribeDatasetResponse:
-      type: object
-      properties:
-        DatasetDescription:
-          allOf:
-          - $ref: '#/components/schemas/DatasetDescription'
-          - description: 'The description of the requested dataset. '
-    DescribeModelResponse:
-      type: object
-      properties:
-        ModelDescription:
-          allOf:
-          - $ref: '#/components/schemas/ModelDescription'
-          - description: Contains the description of the model.
-    ComponentName:
-      type: string
-      pattern: '[a-zA-Z0-9-_.]+'
-      minLength: 1
-      maxLength: 128
-    GreengrassOutputDetails:
-      type: object
-      properties:
-        ComponentVersionArn:
-          allOf:
-          - $ref: '#/components/schemas/ComponentVersionArn'
-          - description: ' The Amazon Resource Name (ARN) of the component. '
-        ComponentName:
-          allOf:
-          - $ref: '#/components/schemas/ComponentName'
-          - description: ' The name of the component. '
-        ComponentVersion:
-          allOf:
-          - $ref: '#/components/schemas/ComponentVersion'
-          - description: ' The version of the component. '
-      description: 'Information about the AWS IoT Greengrass component created by a model packaging job. '
-    TargetPlatformArch:
-      type: string
-      enum:
-      - ARM64
-      - X86_64
-    DeleteDatasetResponse:
-      type: object
-      properties: {}
-    PixelAnomaly:
-      type: object
-      properties:
-        TotalPercentageArea:
-          allOf:
-          - $ref: '#/components/schemas/Float'
-          - description: The percentage area of the image that the anomaly type covers.
-        Color:
-          allOf:
-          - $ref: '#/components/schemas/Color'
-          - description: 'A hex color value for the mask that covers an anomaly type. Each anomaly type has a different mask color. The color maps to the color of the anomaly type used in the training dataset. '
-      description: Information about the pixels in an anomaly mask. For more information, see <a>Anomaly</a>. <code>PixelAnomaly</code> is only returned by image segmentation models.
-    TargetPlatform:
-      type: object
-      required:
-      - Os
-      - Arch
-      properties:
-        Os:
-          allOf:
-          - $ref: '#/components/schemas/TargetPlatformOs'
-          - description: 'The target operating system for the model. Linux is the only operating system that is currently supported. '
-        Arch:
-          allOf:
-          - $ref: '#/components/schemas/TargetPlatformArch'
-          - description: 'The target architecture for the model. The currently supported architectures are X86_64 (64-bit version of the x86 instruction set) and ARM_64 (ARMv8 64-bit CPU). '
-        Accelerator:
-          allOf:
-          - $ref: '#/components/schemas/TargetPlatformAccelerator'
-          - description: '<p>The target accelerator for the model. Currently, Amazon Lookout for Vision only supports NVIDIA (Nvidia graphics processing unit) and CPU accelerators. If you specify NVIDIA as an accelerator, you must also specify the <code>gpu-code</code>, <code>trt-ver</code>, and <code>cuda-ver</code> compiler options. If you don''t specify an accelerator, Lookout for Vision uses the CPU for compilation and we highly recommend that you use the <a>GreengrassConfiguration$CompilerOptions</a> field. For example, you can use the following compiler options for CPU: </p> <ul> <li> <p> <code>mcpu</code>: CPU micro-architecture. For example, <code>{''mcpu'': ''skylake-avx512''}</code> </p> </li> <li> <p> <code>mattr</code>: CPU flags. For example, <code>{''mattr'': [''+neon'', ''+vfpv4'']}</code> </p> </li> </ul>'
-      description: The platform on which a model runs on an AWS IoT Greengrass core device.
-    DatasetGroundTruthManifest:
-      type: object
-      properties:
-        S3Object:
-          allOf:
-          - $ref: '#/components/schemas/InputS3Object'
-          - description: The S3 bucket location for the manifest file.
-      description: Location information about a manifest file. You can use a manifest file to create a dataset.
-    ImageSourceType:
-      type: string
-      pattern: direct
-    ListModelPackagingJobsResponse:
-      type: object
-      properties:
-        ModelPackagingJobs:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingJobsList'
-          - description: ' A list of the model packaging jobs created for the specified Amazon Lookout for Vision project. '
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/PaginationToken'
-          - description: 'If the previous response was incomplete (because there is more results to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. '
-    ProjectArn:
-      type: string
-    ModelPackagingJobMetadata:
-      type: object
-      properties:
-        JobName:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingJobName'
-          - description: ' The name of the model packaging job. '
-        ProjectName:
-          allOf:
-          - $ref: '#/components/schemas/ProjectName'
-          - description: ' The project that contains the model that is in the model package. '
-        ModelVersion:
-          allOf:
-          - $ref: '#/components/schemas/ModelVersion'
-          - description: ' The version of the model that is in the model package. '
-        ModelPackagingJobDescription:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingJobDescription'
-          - description: ' The description for the model packaging job. '
-        ModelPackagingMethod:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingMethod'
-          - description: ' The AWS service used to package the job. Currently Lookout for Vision can package jobs with AWS IoT Greengrass. '
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingJobStatus'
-          - description: 'The status of the model packaging job. '
-        StatusMessage:
-          allOf:
-          - $ref: '#/components/schemas/ModelPackagingStatusMessage'
-          - description: 'The status message for the model packaging job. '
-        CreationTimestamp:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: The Unix timestamp for the time and date that the model packaging job was created.
-        LastUpdatedTimestamp:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: The Unix timestamp for the time and date that the model packaging job was last updated.
-      description: ' Metadata for a model packaging job. For more information, see <a>ListModelPackagingJobs</a>. '
-    TargetPlatformOs:
-      type: string
-      enum:
-      - LINUX
-    UpdateDatasetEntriesResponse:
-      type: object
-      properties:
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/DatasetStatus'
-          - description: The status of the dataset update.
-    OutputConfig:
-      type: object
-      required:
-      - S3Location
-      properties:
-        S3Location:
-          allOf:
-          - $ref: '#/components/schemas/S3Location'
-          - description: The S3 location for the output.
-      description: The S3 location where Amazon Lookout for Vision saves model training files.
+      - CREATED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
     ModelDescription:
       type: object
       properties:
@@ -2872,68 +2699,229 @@ components:
           - $ref: '#/components/schemas/InferenceUnits'
           - description: The maximum number of inference units Amazon Lookout for Vision uses to auto-scale the model. For more information, see <a>StartModel</a>.
       description: Describes an Amazon Lookout for Vision model.
-    S3Location:
+    DescribeModelPackagingJobResponse:
+      type: object
+      properties:
+        ModelPackagingDescription:
+          allOf:
+          - $ref: '#/components/schemas/ModelPackagingDescription'
+          - description: 'The description of the model packaging job. '
+    ResourceNotFoundException: {}
+    Integer:
+      type: integer
+    ModelPackagingStatusMessage:
+      type: string
+    DetectAnomalyResult:
+      type: object
+      properties:
+        Source:
+          allOf:
+          - $ref: '#/components/schemas/ImageSource'
+          - description: The source of the image that was analyzed. <code>direct</code> means that the images was supplied from the local computer. No other values are supported.
+        IsAnomalous:
+          allOf:
+          - $ref: '#/components/schemas/Boolean'
+          - description: True if Amazon Lookout for Vision classifies the image as containing an anomaly, otherwise false.
+        Confidence:
+          allOf:
+          - $ref: '#/components/schemas/Float'
+          - description: The confidence that Lookout for Vision has in the accuracy of the classification in <code>IsAnomalous</code>.
+        Anomalies:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyList'
+          - description: <p>If the model is an image segmentation model, <code>Anomalies</code> contains a list of anomaly types found in the image. There is one entry for each type of anomaly found (even if multiple instances of an anomaly type exist on the image). The first element in the list is always an anomaly type representing the image background ('background') and shouldn't be considered an anomaly. Amazon Lookout for Vision automatically add the background anomaly type to the response, and you don't need to declare a background anomaly type in your dataset.</p> <p>If the list has one entry ('background'), no anomalies were found on the image.</p> <p/> <p>An image classification model doesn't return an <code>Anomalies</code> list. </p>
+        AnomalyMask:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyMask'
+          - description: <p>If the model is an image segmentation model, <code>AnomalyMask</code> contains pixel masks that covers all anomaly types found on the image. Each anomaly type has a different mask color. To map a color to an anomaly type, see the <code>color</code> field of the <a>PixelAnomaly</a> object.</p> <p>An image classification model doesn't return an <code>Anomalies</code> list. </p>
+      description: The prediction results from a call to <a>DetectAnomalies</a>. <code>DetectAnomalyResult</code> includes classification information for the prediction (<code>IsAnomalous</code> and <code>Confidence</code>). If the model you use is an image segementation model, <code>DetectAnomalyResult</code> also includes segmentation information (<code>Anomalies</code> and <code>AnomalyMask</code>). Classification information is calculated separately from segmentation information and you shouldn't assume a relationship between them.
+    ModelArn:
+      type: string
+    Float:
+      type: number
+      format: float
+    InputS3Object:
       type: object
       required:
       - Bucket
+      - Key
       properties:
         Bucket:
           allOf:
           - $ref: '#/components/schemas/S3BucketName'
-          - description: The S3 bucket that contains the training or model packaging job output. If you are training a model, the bucket must in your AWS account. If you use an S3 bucket for a model packaging job, the S3 bucket must be in the same AWS Region and AWS account in which you use AWS IoT Greengrass.
-        Prefix:
+          - description: The Amazon S3 bucket that contains the manifest.
+        Key:
           allOf:
-          - $ref: '#/components/schemas/S3KeyPrefix'
-          - description: The path of the folder, within the S3 bucket, that contains the output.
-      description: Information about the location of training output or the output of a model packaging job.
-    ModelPerformance:
+          - $ref: '#/components/schemas/S3ObjectKey'
+          - description: The name and location of the manifest file withiin the bucket.
+        VersionId:
+          allOf:
+          - $ref: '#/components/schemas/S3ObjectVersion'
+          - description: The version ID of the bucket.
+      description: 'Amazon S3 Location information for an input manifest file. '
+    PixelAnomaly:
       type: object
       properties:
-        F1Score:
+        TotalPercentageArea:
           allOf:
           - $ref: '#/components/schemas/Float'
-          - description: The overall F1 score metric for the trained model.
-        Recall:
+          - description: The percentage area of the image that the anomaly type covers.
+        Color:
           allOf:
-          - $ref: '#/components/schemas/Float'
-          - description: 'The overall recall metric value for the trained model. '
-        Precision:
-          allOf:
-          - $ref: '#/components/schemas/Float'
-          - description: The overall precision metric value for the trained model.
-      description: 'Information about the evaluation performance of a trained model. '
-    ModelPackagingMethod:
+          - $ref: '#/components/schemas/Color'
+          - description: 'A hex color value for the mask that covers an anomaly type. Each anomaly type has a different mask color. The color maps to the color of the anomaly type used in the training dataset. '
+      description: Information about the pixels in an anomaly mask. For more information, see <a>Anomaly</a>. <code>PixelAnomaly</code> is only returned by image segmentation models.
+    ImageSourceType:
       type: string
-      pattern: ^[a-zA-Z0-9]+
-      minLength: 1
-      maxLength: 32
-    TagKey:
+      pattern: direct
+    Tag:
+      type: object
+      required:
+      - Key
+      - Value
+      properties:
+        Key:
+          allOf:
+          - $ref: '#/components/schemas/TagKey'
+          - description: The key of the tag that is attached to the specified model.
+        Value:
+          allOf:
+          - $ref: '#/components/schemas/TagValue'
+          - description: The value of the tag that is attached to the specified model.
+      description: A key and value pair that is attached to the specified Amazon Lookout for Vision model.
+    OutputConfig:
+      type: object
+      required:
+      - S3Location
+      properties:
+        S3Location:
+          allOf:
+          - $ref: '#/components/schemas/S3Location'
+          - description: The S3 location for the output.
+      description: The S3 location where Amazon Lookout for Vision saves model training files.
+    DescribeProjectResponse:
+      type: object
+      properties:
+        ProjectDescription:
+          allOf:
+          - $ref: '#/components/schemas/ProjectDescription'
+          - description: The description of the project.
+    GreengrassConfiguration:
+      type: object
+      required:
+      - S3OutputLocation
+      - ComponentName
+      properties:
+        CompilerOptions:
+          allOf:
+          - $ref: '#/components/schemas/CompilerOptions'
+          - description: <p>Additional compiler options for the Greengrass component. Currently, only NVIDIA Graphics Processing Units (GPU) and CPU accelerators are supported. If you specify <code>TargetDevice</code>, don't specify <code>CompilerOptions</code>.</p> <p>For more information, see <i>Compiler options</i> in the Amazon Lookout for Vision Developer Guide. </p>
+        TargetDevice:
+          allOf:
+          - $ref: '#/components/schemas/TargetDevice'
+          - description: 'The target device for the model. Currently the only supported value is <code>jetson_xavier</code>. If you specify <code>TargetDevice</code>, you can''t specify <code>TargetPlatform</code>. '
+        TargetPlatform:
+          allOf:
+          - $ref: '#/components/schemas/TargetPlatform'
+          - description: 'The target platform for the model. If you specify <code>TargetPlatform</code>, you can''t specify <code>TargetDevice</code>. '
+        S3OutputLocation:
+          allOf:
+          - $ref: '#/components/schemas/S3Location'
+          - description: ' An S3 location in which Lookout for Vision stores the component artifacts. '
+        ComponentName:
+          allOf:
+          - $ref: '#/components/schemas/ComponentName'
+          - description: ' A name for the AWS IoT Greengrass component. '
+        ComponentVersion:
+          allOf:
+          - $ref: '#/components/schemas/ComponentVersion'
+          - description: 'A Version for the AWS IoT Greengrass component. If you don''t provide a value, a default value of <code> <i>Model Version</i>.0.0</code> is used. '
+        ComponentDescription:
+          allOf:
+          - $ref: '#/components/schemas/ComponentDescription'
+          - description: ' A description for the AWS IoT Greengrass component. '
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagList'
+          - description: ' A set of tags (key-value pairs) that you want to attach to the AWS IoT Greengrass component. '
+      description: <p>Configuration information for the AWS IoT Greengrass component created in a model packaging job. For more information, see <a>StartModelPackagingJob</a>. </p> <note> <p>You can't specify a component with the same <code>ComponentName</code> and <code>Componentversion</code> as an existing component with the same component name and component version.</p> </note>
+    AnomalyName:
       type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      pattern: '[a-zA-Z0-9]*'
       minLength: 1
-      maxLength: 128
-    StartModelResponse:
+      maxLength: 256
+    InternalServerException: {}
+    DatasetStatus:
+      type: string
+      enum:
+      - CREATE_IN_PROGRESS
+      - CREATE_COMPLETE
+      - CREATE_FAILED
+      - UPDATE_IN_PROGRESS
+      - UPDATE_COMPLETE
+      - UPDATE_FAILED_ROLLBACK_IN_PROGRESS
+      - UPDATE_FAILED_ROLLBACK_COMPLETE
+      - DELETE_IN_PROGRESS
+      - DELETE_COMPLETE
+      - DELETE_FAILED
+    ListModelsResponse:
+      type: object
+      properties:
+        Models:
+          allOf:
+          - $ref: '#/components/schemas/ModelMetadataList'
+          - description: 'A list of model versions in the specified project. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: 'If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of models. '
+    ModelMetadataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ModelMetadata'
+    DeleteProjectResponse:
+      type: object
+      properties:
+        ProjectArn:
+          allOf:
+          - $ref: '#/components/schemas/ProjectArn'
+          - description: The Amazon Resource Name (ARN) of the project that was deleted.
+    ListProjectsResponse:
+      type: object
+      properties:
+        Projects:
+          allOf:
+          - $ref: '#/components/schemas/ProjectMetadataList'
+          - description: A list of projects in your AWS account.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: If the response is truncated, Amazon Lookout for Vision returns this token that you can use in the subsequent request to retrieve the next set of projects.
+    S3BucketName:
+      type: string
+      pattern: '[0-9A-Za-z\.\-_]*'
+      minLength: 3
+      maxLength: 63
+    Color:
+      type: string
+      pattern: \#[a-zA-Z0-9]{6}
+      minLength: 7
+      maxLength: 7
+    ModelPackagingJobsList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ModelPackagingJobMetadata'
+    ServiceQuotaExceededException: {}
+    UpdateDatasetEntriesResponse:
       type: object
       properties:
         Status:
           allOf:
-          - $ref: '#/components/schemas/ModelHostingStatus'
-          - description: The current running status of the model.
+          - $ref: '#/components/schemas/DatasetStatus'
+          - description: The status of the dataset update.
   parameters:
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -2944,20 +2932,32 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
     X-Amz-SignedHeaders:
       name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
