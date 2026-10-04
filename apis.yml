@@ -98,6 +98,9 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-lookout-for-vision-context.jsonld
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-lookout-for-vision-capability-edges.yml
+  name: Amazon Lookout for Vision Business Capability Map
 - type: Website
   url: https://amazon.com
 - type: PostmanWorkspace
