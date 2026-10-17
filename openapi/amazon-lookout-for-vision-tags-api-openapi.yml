@@ -350,17 +350,41 @@ paths:
       - Tags
 components:
   schemas:
+    ThrottlingException: {}
+    TagResourceResponse:
+      type: object
+      properties: {}
+    ListTagsForResourceResponse:
+      type: object
+      properties:
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagList'
+          - description: A map of tag keys and values attached to the specified model.
+    UntagResourceResponse:
+      type: object
+      properties: {}
     ConflictException: {}
-    InternalServerException: {}
-    ResourceNotFoundException: {}
     TagValue:
       type: string
       pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
       minLength: 0
       maxLength: 256
-    UntagResourceResponse:
-      type: object
-      properties: {}
+    ResourceNotFoundException: {}
+    TagKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    TagList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tag'
+      minItems: 0
+      maxItems: 200
+    InternalServerException: {}
+    ValidationException: {}
+    AccessDeniedException: {}
     Tag:
       type: object
       required:
@@ -376,40 +400,16 @@ components:
           - $ref: '#/components/schemas/TagValue'
           - description: The value of the tag that is attached to the specified model.
       description: A key and value pair that is attached to the specified Amazon Lookout for Vision model.
-    TagResourceResponse:
-      type: object
-      properties: {}
-    AccessDeniedException: {}
-    ListTagsForResourceResponse:
-      type: object
-      properties:
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagList'
-          - description: A map of tag keys and values attached to the specified model.
-    TagKey:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 1
-      maxLength: 128
     ServiceQuotaExceededException: {}
-    TagList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Tag'
-      minItems: 0
-      maxItems: 200
-    ValidationException: {}
-    ThrottlingException: {}
   parameters:
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Date:
-      name: X-Amz-Date
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -420,8 +420,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Date:
+      name: X-Amz-Date
       in: header
       schema:
         type: string
@@ -438,8 +438,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
