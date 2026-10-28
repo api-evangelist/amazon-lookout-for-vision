@@ -1,4 +1,4 @@
-# Amazon Lookout for Vision (amazon-lookout-for-vision)
+# Amazon Lookout for Vision
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,135 +64,204 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
+
 Amazon Lookout for Vision is a machine learning service that spots defects and anomalies in visual representations using computer vision. With just a small sample of images, it builds a custom computer vision model to enable you to identify damaged products or issues before production issues arise. It supports projects, datasets, model training, and real-time anomaly detection.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/amazon-lookout-for-vision/refs/heads/main/apis.yml)
+**Areas:** AWS · Computer Vision · Machine Learning · Manufacturing · Quality Inspection · Anomaly Detection · Defunct
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Amazon Lookout for Vision on APIs.io (historical record)
 
-## Tags:
+Everything profiled for Amazon Lookout for Vision is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/amazon-lookout-for-vision/](https://apis.io/providers/amazon-lookout-for-vision/)** — or go straight to one of the APIs or properties below.
 
- - AWS, Computer Vision, Machine Learning, Manufacturing, Quality Inspection, Anomaly Detection
+### APIs (2)
 
-## Timestamps
+- [Amazon Lookout for Vision Projects API](https://apis.io/apis/amazon-lookout-for-vision/amazon-lookout-for-vision-projects-api/) — The Projects API from Amazon Lookout for Vision — 12 operation(s) for projects.
+- [Amazon Lookout for Vision Tags API](https://apis.io/apis/amazon-lookout-for-vision/amazon-lookout-for-vision-tags-api/) — The Tags API from Amazon Lookout for Vision — 2 operation(s) for tags.
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Amazon Lookout for Vision API
-The Amazon Lookout for Vision API provides programmatic access to create and manage projects, datasets, models, and anomaly detection jobs for visual quality inspection using computer vision. Supports 22 operations covering the full model lifecycle from dataset management through real-time anomaly detection.
+#### Agentic access (1)
 
-**Human URL:** [https://aws.amazon.com/lookout-for-vision/](https://aws.amazon.com/lookout-for-vision/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Amazon Lookout For Vision Agentic Access](https://apis.io/agentic-access/amazon-lookout-for-vision/amazon-lookout-for-vision-agentic-access/)
 
- - Computer Vision, Machine Learning, Quality Inspection, Anomaly Detection
+#### JSON Schema (131)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/Welcome.html)
-- [OpenAPI](openapi/amazon-lookout-for-vision-openapi-original.yaml)
-- [GettingStarted](https://aws.amazon.com/lookout-for-vision/getting-started/)
-- [Pricing](https://aws.amazon.com/lookout-for-vision/pricing/)
-- [FAQ](https://aws.amazon.com/lookout-for-vision/faqs/)
+- [Anomaly](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly/)
+- [AnomalyClassFilter](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-class-filter/)
+- [AnomalyList](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-list/)
+- [AnomalyMask](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-mask/)
+- [AnomalyName](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-name/)
+- [Boolean](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-boolean/)
+- [ClientToken](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-client-token/)
+- [Color](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-color/)
+- [CompilerOptions](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-compiler-options/)
+- [ComponentDescription](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-component-description/)
+- [ComponentName](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-component-name/)
+- [ComponentVersion](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version/)
+- [ComponentVersionArn](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version-arn/)
+- [ContentType](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-content-type/)
+- [CreateDatasetRequest](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-request/)
+- [CreateDatasetResponse](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-response/)
+- [CreateModelRequest](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-request/)
+- [CreateModelResponse](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-response/)
+- [CreateProjectRequest](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-request/)
+- [CreateProjectResponse](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-response/)
+- [DatasetChanges](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-changes/)
+- [DatasetDescription](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-description/)
+- [DatasetEntry](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry/)
+- [DatasetEntryList](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry-list/)
+- [DatasetGroundTruthManifest](https://apis.io/schemas/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-ground-truth-manifest/)
+- …and 106 more published on APIs.io
 
-## Common Properties
+#### JSON Structure (131)
 
-- [Portal](https://aws.amazon.com/lookout-for-vision/)
+Data models expressed in JSON Structure.
+
+- [Amazon Lookout For Vision Anomaly Class Filter Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-class-filter-structure/)
+- [Amazon Lookout For Vision Anomaly List Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-list-structure/)
+- [Amazon Lookout For Vision Anomaly Mask Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-mask-structure/)
+- [Amazon Lookout For Vision Anomaly Name Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-name-structure/)
+- [Amazon Lookout For Vision Anomaly Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-structure/)
+- [Amazon Lookout For Vision Boolean Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-boolean-structure/)
+- [Amazon Lookout For Vision Client Token Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-client-token-structure/)
+- [Amazon Lookout For Vision Color Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-color-structure/)
+- [Amazon Lookout For Vision Compiler Options Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-compiler-options-structure/)
+- [Amazon Lookout For Vision Component Description Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-component-description-structure/)
+- [Amazon Lookout For Vision Component Name Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-component-name-structure/)
+- [Amazon Lookout For Vision Component Version Arn Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version-arn-structure/)
+- [Amazon Lookout For Vision Component Version Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version-structure/)
+- [Amazon Lookout For Vision Content Type Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-content-type-structure/)
+- [Amazon Lookout For Vision Create Dataset Request Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-request-structure/)
+- [Amazon Lookout For Vision Create Dataset Response Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-response-structure/)
+- [Amazon Lookout For Vision Create Model Request Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-request-structure/)
+- [Amazon Lookout For Vision Create Model Response Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-response-structure/)
+- [Amazon Lookout For Vision Create Project Request Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-request-structure/)
+- [Amazon Lookout For Vision Create Project Response Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-response-structure/)
+- [Amazon Lookout For Vision Dataset Changes Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-changes-structure/)
+- [Amazon Lookout For Vision Dataset Description Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-description-structure/)
+- [Amazon Lookout For Vision Dataset Entry List Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry-list-structure/)
+- [Amazon Lookout For Vision Dataset Entry Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry-structure/)
+- [Amazon Lookout For Vision Dataset Ground Truth Manifest Structure](https://apis.io/json-structure/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-ground-truth-manifest-structure/)
+- …and 106 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Amazon Lookout For Vision Context](https://apis.io/jsonld/amazon-lookout-for-vision/amazon-lookout-for-vision-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Amazon Lookout For Vision Vocabulary](https://apis.io/vocabularies/amazon-lookout-for-vision/amazon-lookout-for-vision-vocabulary/)
+
+#### Examples (131)
+
+Example requests and responses.
+
+- [Amazon Lookout For Vision Anomaly Class Filter Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-class-filter-example/)
+- [Amazon Lookout For Vision Anomaly Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-example/)
+- [Amazon Lookout For Vision Anomaly List Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-list-example/)
+- [Amazon Lookout For Vision Anomaly Mask Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-mask-example/)
+- [Amazon Lookout For Vision Anomaly Name Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-anomaly-name-example/)
+- [Amazon Lookout For Vision Boolean Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-boolean-example/)
+- [Amazon Lookout For Vision Client Token Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-client-token-example/)
+- [Amazon Lookout For Vision Color Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-color-example/)
+- [Amazon Lookout For Vision Compiler Options Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-compiler-options-example/)
+- [Amazon Lookout For Vision Component Description Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-component-description-example/)
+- [Amazon Lookout For Vision Component Name Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-component-name-example/)
+- [Amazon Lookout For Vision Component Version Arn Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version-arn-example/)
+- [Amazon Lookout For Vision Component Version Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-component-version-example/)
+- [Amazon Lookout For Vision Content Type Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-content-type-example/)
+- [Amazon Lookout For Vision Create Dataset Request Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-request-example/)
+- [Amazon Lookout For Vision Create Dataset Response Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-dataset-response-example/)
+- [Amazon Lookout For Vision Create Model Request Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-request-example/)
+- [Amazon Lookout For Vision Create Model Response Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-model-response-example/)
+- [Amazon Lookout For Vision Create Project Request Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-request-example/)
+- [Amazon Lookout For Vision Create Project Response Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-create-project-response-example/)
+- [Amazon Lookout For Vision Dataset Changes Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-changes-example/)
+- [Amazon Lookout For Vision Dataset Description Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-description-example/)
+- [Amazon Lookout For Vision Dataset Entry Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry-example/)
+- [Amazon Lookout For Vision Dataset Entry List Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-entry-list-example/)
+- [Amazon Lookout For Vision Dataset Ground Truth Manifest Example](https://apis.io/examples/amazon-lookout-for-vision/amazon-lookout-for-vision-dataset-ground-truth-manifest-example/)
+- …and 106 more published on APIs.io
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Amazon Lookout for Vision Projects API](https://apis.io/collections/amazon-lookout-for-vision/open-amazon-lookout-for-vision-projects-api/)
+- [Amazon Lookout for Vision Projects Tags API](https://apis.io/collections/amazon-lookout-for-vision/open-amazon-lookout-for-vision-tags-api/)
+- [Amazon Lookout for Vision Projects API](https://apis.io/collections/amazon-lookout-for-vision/postman-amazon-lookout-for-vision-projects-api/)
+- [Amazon Lookout for Vision Projects Tags API](https://apis.io/collections/amazon-lookout-for-vision/postman-amazon-lookout-for-vision-tags-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Amazon Lookout for Vision — jsonschema rules](https://apis.io/rules/amazon-lookout-for-vision/amazon-lookout-for-vision-jsonschema-spectral-rules/)
+- [Amazon Lookout for Vision API Rules](https://apis.io/rules/amazon-lookout-for-vision/amazon-lookout-for-vision-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Amazon Lookout For Vision Authentication](https://apis.io/security/amazon-lookout-for-vision/amazon-lookout-for-vision-authentication/)
+- [Amazon Lookout For Vision Domain Security](https://apis.io/security/amazon-lookout-for-vision/amazon-lookout-for-vision-domain-security/)
+- [Amazon Lookout For Vision Trust Center](https://apis.io/security/amazon-lookout-for-vision/amazon-lookout-for-vision-trust-center/)
+- [Amazon Lookout For Vision Vulnerability Disclosure](https://apis.io/security/amazon-lookout-for-vision/amazon-lookout-for-vision-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Amazon Lookout For Vision Plans Pricing](https://apis.io/plans/amazon-lookout-for-vision/amazon-lookout-for-vision-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Amazon Lookout For Vision Rate Limits](https://apis.io/rate-limits/amazon-lookout-for-vision/amazon-lookout-for-vision-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Amazon Lookout For Vision Finops](https://apis.io/finops/amazon-lookout-for-vision/amazon-lookout-for-vision-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://amazon.com)
 - [Documentation](https://docs.aws.amazon.com/lookout-for-vision/)
-- [TermsOfService](https://aws.amazon.com/service-terms/)
-- [PrivacyPolicy](https://aws.amazon.com/privacy/)
 - [Support](https://aws.amazon.com/premiumsupport/)
 - [Blog](https://aws.amazon.com/blogs/machine-learning/tag/amazon-lookout-for-vision/)
-- [GitHubOrganization](https://github.com/aws)
-- [Console](https://console.aws.amazon.com/lookoutvision/)
-- [SignUp](https://portal.aws.amazon.com/billing/signup)
-- [Login](https://signin.aws.amazon.com/)
-- [StatusPage](https://health.aws.amazon.com/health/status)
-- [Contact](https://aws.amazon.com/contact-us/)
-- [SpectralRules](rules/amazon-lookout-for-vision-spectral-rules.yml)
-- [Vocabulary](vocabulary/amazon-lookout-for-vision-vocabulary.yaml)
-- [NaftikoCapability](capabilities/visual-inspection-workflow.yaml)
+- [Terms of service](https://aws.amazon.com/service-terms/)
+- [Privacy policy](https://aws.amazon.com/privacy/)
+- [GitHub](https://github.com/aws)
+- [Status](https://health.aws.amazon.com/health/status)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Custom Computer Vision Models | Build custom visual inspection models with just a small sample of images, no ML expertise required. |
-| Real-Time Defect Detection | Run inference on images in real time to detect defects and anomalies on the production line. |
-| Edge Deployment | Package and deploy models to edge devices for local inference without cloud connectivity. |
-| Dataset Management | Manage labeled training and test datasets directly through the API. |
-| Model Packaging Jobs | Package trained models for deployment to AWS IoT Greengrass edge devices. |
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
 
-## Use Cases
+## How this profile is made
 
-| Name | Description |
-|------|-------------|
-| Manufacturing Quality Control | Automate visual inspection of manufactured products to detect surface defects, assembly errors, and damaged items. |
-| Electronics Assembly Inspection | Detect solder defects, missing components, and board damage in electronics manufacturing. |
-| Food and Beverage Quality | Identify contaminated, damaged, or improperly packaged food products on production lines. |
-| Pharmaceutical Packaging | Verify correct labeling, packaging integrity, and tablet quality in pharmaceutical manufacturing. |
-| Automotive Parts Inspection | Detect cracks, scratches, and dimensional defects in automotive components. |
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-## Integrations
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Amazon Lookout for Vision: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-| Name | Description |
-|------|-------------|
-| Amazon S3 | Store training images and dataset manifests in S3 buckets. |
-| AWS IoT Greengrass | Deploy packaged models to IoT Greengrass edge devices for local inference. |
-| Amazon CloudWatch | Monitor model performance metrics and detection results in CloudWatch. |
-| AWS KMS | Encrypt model artifacts using AWS Key Management Service. |
+## Open an issue
 
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Amazon Lookout for Vision OpenAPI](openapi/amazon-lookout-for-vision-openapi-original.yaml)
-
-### JSON Schema
-
-131 schema files available in the [json-schema/](json-schema/) directory.
-
-### JSON Structure
-
-131 structure files available in the [json-structure/](json-structure/) directory.
-
-### JSON-LD
-
-- [Amazon Lookout for Vision Context](json-ld/amazon-lookout-for-vision-context.jsonld)
-
-### Examples
-
-131 example files available in the [examples/](examples/) directory.
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Amazon Lookout for Vision](capabilities/shared/lookout-for-vision.yaml) — 9 operations for project management, model training, and anomaly detection
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Visual Inspection Workflow](capabilities/visual-inspection-workflow.yaml) | Amazon Lookout for Vision | 8 | Manufacturing Engineer, Quality Inspector |
-
-## Vocabulary
-
-- [Amazon Lookout for Vision Vocabulary](vocabulary/amazon-lookout-for-vision-vocabulary.yaml) — Unified taxonomy mapping 6 resources, 8 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Amazon Lookout for Vision Spectral Rules](rules/amazon-lookout-for-vision-spectral-rules.yml) — 18 rules across 7 categories enforcing Amazon Lookout for Vision API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/amazon-lookout-for-vision/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
